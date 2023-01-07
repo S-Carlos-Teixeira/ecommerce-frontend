@@ -22,14 +22,14 @@ function Home() {
   }, [])
 
   return (
-    <section>
-      <div>
-        <div>
-          <p>Project Ecommerce</p>
+    <section className="hero is-link is-fullheight-with-navbar is-link">
+      <div className="hero-body has-text-centered">
+        <div className="container">
+          <p className="title">Project Ecommerce</p>
         </div>
       </div>
-      <div>
-      <div>
+      <div className="is-flex-direction-row">
+      <div className="is-flex-direction-row">
         {Products?.map((product: IProduct) => {
           return <Product 
             key={product._id}

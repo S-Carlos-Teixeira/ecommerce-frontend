@@ -33,13 +33,14 @@ export default function Login({ fetchUser }: { fetchUser: Function }) {
     setErrorMessage("")
   }
 
-  return <div>
-    <div>
+  return <div className="section">
+    <div className="container">
       <form onSubmit={handleSubmit}>
-        <div>
-          <label>Email</label>
-          <div>
+        <div className="field">
+          <label className="label">Email</label>
+          <div className="control">
             <input
+              className="input"
               type="text"
               name={'email'}
               onChange={handleChange}
@@ -47,16 +48,17 @@ export default function Login({ fetchUser }: { fetchUser: Function }) {
             />
           </div>
         </div>
-        <div>
-          <label>Password</label>
-          <div>
+        <div className="field">
+          <label className="label">Password</label>
+          <div className="control">
             <input
+              className="input"
               type="password"
               name={'password'}
               onChange={handleChange}
               value={formData.password}
             />
-            {errorMessage && <small>Log in failed</small>}
+            {errorMessage && <small className="has-text-danger">Log in failed</small>}
           </div>
         </div>
         <button className="button">Submit</button>

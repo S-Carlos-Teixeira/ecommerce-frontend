@@ -8,4 +8,5 @@ export interface IAddress{
   townCity: String,
   county: String,
   deliveryInstructions: String,
+  user: { username: string }
 }
