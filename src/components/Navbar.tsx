@@ -7,28 +7,35 @@ interface NavbarProps {
 }
 
 function Navbar({ user, setUser }: NavbarProps) {
+
   const navigate = useNavigate()
 
   function logout() {
     localStorage.removeItem('token')
     setUser(null)
-    navigate('/')
+    navigate('/home')
   } 
   return(
     <>
     <header>
-      <nav>
-        <div>
-          <div>
-            <Link to="/home">
+      <nav className="navbar is-dark">
+        <div className="container">
+          <div className="navbar-brand">
+            <Link to="/home" className="navbar-item">
                 Home
             </Link>
-            <Link to="/signup">
+            <Link to="/signup" className="navbar-item">
                 Sign Up
             </Link>
-            <Link to="/login">
+            <Link to="/login" className="navbar-item">
                 Log In
             </Link>
+            {user && <Link to="/addproduct" className="navbar-item">
+                Add product
+            </Link>}
+            {user && <button onClick={logout} className="button navbar-item is-ghost">
+                Logout  
+              </button>}
           </div>
         </div>
       </nav>

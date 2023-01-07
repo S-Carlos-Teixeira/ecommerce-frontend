@@ -3,4 +3,5 @@ export interface IPayment{
   nameOnCard: String,
   expDate: String,
   flag: String
+  user: { username: string }
 }

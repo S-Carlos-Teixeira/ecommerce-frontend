@@ -6,4 +6,5 @@ export interface IProduct {
   categories: string,
   image: string
   quantity: string
+  user: { username: string }
 }

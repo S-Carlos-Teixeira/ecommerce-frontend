@@ -48,7 +48,8 @@ export default function AddProduct() {
     setErrorData(newErrorData)
   }
 
-  return <div>
+  return (
+  <div>
     <div>
       <form onSubmit={handleSubmit}>
         <div>
@@ -133,5 +134,5 @@ export default function AddProduct() {
       </form>
     </div>
   </div>
-
+  )
 }
