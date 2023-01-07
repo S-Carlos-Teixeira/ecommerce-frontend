@@ -8,8 +8,9 @@ import Login from "./components/Login"
 import { IUser } from "./interfaces/user"
 import AddProduct from "./components/AddProduct"
 import ShowProduct from "./components/ShowProduct"
-import Payment from "./components/Payment"
-import Address from "./components/Address"
+// import Payment from "./components/Payment"
+// import Address from "./components/Address"
+import SellerSignup from "./components/SellerSignup"
 
 function App() {
   const [user, setUser] = useState<null | IUser>(null)
@@ -27,19 +28,21 @@ function App() {
     if (token) fetchUser()
   }, [])
   return (
-  <Router>
-    <Navbar user={user} setUser={setUser} />
-    <main>
-      <Route path="/home" element={<Home />} />
-      <Route path="/signup" element={<Signup />} />
-      <Route path="/login" element={<Login fetchUser={fetchUser} />} />
-      <Route path="/product/:productId" element={<ShowProduct />} />
-      <Route path="/add-product" element={<AddProduct />} />
-      <Route path="/address" element={<Address />} />
-      <Route path="/payment" element={<Payment />} />
-    </main>
-
-  </Router>
+    <Router>
+      <Navbar user={user} setUser={setUser} />
+      <main>
+        <Routes>
+          <Route path="/home" element={<Home />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/login" element={<Login fetchUser={fetchUser} />} />
+          <Route path="/product/:productId" element={<ShowProduct />} />
+          <Route path="/add-product" element={<AddProduct />} />
+          <Route path="/seller/signup" element={<SellerSignup />} />
+          {/* <Route path="/address" element={<Address />} /> */}
+          {/* <Route path="/payment" element={<Payment />} /> */}
+        </Routes>
+      </main>
+    </Router>
   )
 }
 
