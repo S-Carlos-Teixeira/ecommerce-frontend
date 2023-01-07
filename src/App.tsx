@@ -26,7 +26,7 @@ function App() {
     const token = localStorage.getItem('token')
     if (token) fetchUser()
   }, [])
-  return
+  return (
   <Router>
     <Navbar user={user} setUser={setUser} />
     <main>
@@ -40,6 +40,7 @@ function App() {
     </main>
 
   </Router>
+  )
 }
 
 export default App
