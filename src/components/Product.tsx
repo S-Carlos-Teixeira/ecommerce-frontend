@@ -9,10 +9,10 @@ function Product({ _id, name, description, price, categories, image, quantity }:
           <div className="card-header-title">{name}</div>
         </div>
         <div className="card-content">
-          <div>{ description }</div>
+          <div>Description: { description }</div>
         </div>
         <div className="card-content">
-          <div>{ price }</div>
+          <div>Price = £{ price }</div>
         </div>
         <div className="card-content">
           <div>{ categories }</div>
@@ -23,7 +23,7 @@ function Product({ _id, name, description, price, categories, image, quantity }:
           </figure>
         </div>
         <div className="card-content">
-          <div>{ quantity }</div>
+          <div>Quantity: { quantity }</div>
         </div>
       </div>
     </Link>

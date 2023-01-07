@@ -33,6 +33,10 @@ function Navbar({ user, setUser }: NavbarProps) {
             {user && <Link to="/addproduct" className="navbar-item">
                 Add product
             </Link>}
+            {user && <Link to="/cart" className="navbar-item">
+                Cart
+            </Link>}
+            
             {user && <button onClick={logout} className="button navbar-item is-ghost">
                 Logout  
               </button>}
