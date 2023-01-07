@@ -20,7 +20,7 @@ function Navbar({ user, setUser }: NavbarProps) {
       <nav>
         <div>
           <div>
-            <Link to="/">
+            <Link to="/home">
                 Home
             </Link>
             <Link to="/signup">
