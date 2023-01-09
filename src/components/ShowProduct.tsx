@@ -6,6 +6,7 @@ import Product from "./Product"
 function ShowProduct() {
   const [product, updateProducts] = React.useState<IProduct | null>(null)
   const { productId } = useParams()
+  
 
   React.useEffect(() => {
     console.log("Your product is available")
@@ -16,6 +17,8 @@ function ShowProduct() {
       const resp = await fetch(`/api/product/${productId}`)
       const ProductsData = await resp.json()
       updateProducts(ProductsData)
+      console.log(ProductsData);
+      
     }
     fetchProducts()
   }, [])
