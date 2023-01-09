@@ -8,13 +8,22 @@ function Product({ _id, name, description, price, categories, image, quantity, r
         <div className="card-header">
           <div className="card-header-title">{name}</div>
         </div>
+        <div className="card-content">
+          <div>Description: { description }</div>
+        </div>
+        <div className="card-content">
+          <div>Price = £{ price }</div>
+        </div>
+        <div className="card-content">
+          <div>{ categories }</div>
+        </div>
         <div className="card-image">
           <figure className="image is-4by3">
             <img src={image} className="card-img-top" alt={name} />
           </figure>
         </div>
         <div className="card-content">
-          <div>{ description }</div>
+          <div>Quantity: { quantity }</div>
         </div>
         <div className="card-content">
           <div>&pound;:{ price }</div>

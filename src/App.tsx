@@ -35,7 +35,7 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login fetchUser={fetchUser} />} />
-          <Route path="/product/:productId" element={<ShowProduct />} />
+          <Route path="/product/:productId" element={<ShowProduct user={user} setUser={setUser}/>} />
           <Route path="/addproduct" element={<AddProduct />} />
           <Route path="/seller/signup" element={<SellerSignup />} />
           <Route path="product/:productId/user/:userId"
