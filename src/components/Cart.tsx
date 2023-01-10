@@ -35,6 +35,19 @@ function Cart() {
     return <p> Loading Cart</p>
   }
 
+  async function handleRemoveFromCart(productId: String) {
+    
+    try {
+      const token = localStorage.getItem('token')
+      const { data } = await axios.delete(`/api/product/${productId}/cart`, 
+      {headers: { Authorization: `Bearer ${token}` }
+      // updateCarts
+    })
+    } catch (err: any) {
+      setErrorMessage(err.response.data.message)
+    }
+  }
+
   return (
     <section className="hero is-link is-fullheight-with-navbar is-link">
       <div className="hero-body has-text-centered">
@@ -56,7 +69,7 @@ function Cart() {
                 </div>
 
                 <div className="card-content">
-                  <div>Status: {product.product[0].image}</div>
+                  <div> <img src={product.product[0].image} /></div>
                 </div>
 
                 <div className="card-content">
@@ -65,6 +78,10 @@ function Cart() {
 
                 <div className="card-content">
                   <div>Quantity: {product.quantity}</div>
+                </div>
+
+                <div>
+                  {<button className="button" onClick={() => handleRemoveFromCart(product.product[0]._id)}>Remove from cart</button>}
                 </div>
               </div>
             )
