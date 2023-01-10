@@ -7,18 +7,10 @@ import ICart from "../interfaces/cart"
 
 type Products = null | Array<ICart>
 
-function Cart({user, products, status}: ICart) {
+function Cart(/*{user, products, status}: ICart*/) {
   const [Carts, updateCarts] = React.useState<ICart | null>(null)
   const [errorMessage, setErrorMessage] = useState('')
 
-  // React.useEffect(() => {
-  //   async function fetchCart() {
-  //     const resp = await fetch("/api/cart")
-  //     const data = await resp.json()
-  //     updateCarts(data)
-  //   }
-  //   fetchCart() 
-  // }, [])
 
   async function updateCart() {
     try {
