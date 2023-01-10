@@ -11,7 +11,7 @@ export default interface ICart{
 
 export interface ICartProduct {
   name: String,
-  product: IProduct,
+  product: Array<IProduct>,
   quantity: number,
   _id: string
 }

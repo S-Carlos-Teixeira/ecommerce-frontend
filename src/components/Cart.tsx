@@ -1,26 +1,23 @@
+import axios from 'axios'
 import React, { SyntheticEvent, useState } from 'react'
-import { IProduct } from "../interfaces/product"
-import { ICartProduct } from '../interfaces/cart'
-import Product from "./Product"
-import { useParams } from "react-router-dom"
-import axios from "axios"
-import ICart from "../interfaces/cart"
+import { useParams } from 'react-router-dom'
+import ICart, { ICartProduct } from '../interfaces/cart'
+import { IProduct } from '../interfaces/product'
+import Product from './Product'
 
-type TCart = null | Array<ICart> | Array <ICartProduct>
+type TCart = null | Array<ICart>
 
-function Cart({ products, status, price, quantity }: ICart) {
+function Cart() {
   const [Carts, updateCarts] = React.useState<TCart>(null)
   const [errorMessage, setErrorMessage] = useState('')
-
 
   React.useEffect(() => {
     async function updateCart() {
       try {
         const token = localStorage.getItem('token')
-        const { data } = await axios.get(`/api/cart`,
-          {
-            headers: { Authorization: `Bearer ${token}` },
-          })
+        const { data } = await axios.get(`/api/cart`, {
+          headers: { Authorization: `Bearer ${token}` }
+        })
         console.log(data)
         updateCarts(data)
         // .then(function(response) {
@@ -34,11 +31,8 @@ function Cart({ products, status, price, quantity }: ICart) {
     updateCart()
   }, [])
 
-
   if (!Carts) {
-    return (
-      <p> Loading Cart</p>
-    )
+    return <p> Loading Cart</p>
   }
 
   return (
@@ -50,28 +44,29 @@ function Cart({ products, status, price, quantity }: ICart) {
       </div>
       <div className="is-flex-direction-row">
         <div className="is-flex-direction-row">
-          {Carts[0].products?.map((product) => {
-            console.log(product);
+          {Carts[0].products?.map(product => {
+            console.log(product)
 
             return (
-            <div className="card">
-              <div className="card-header">
-                <div className="card-header-title">{product.product[0].name}</div>
-              </div>
+              <div className="card">
+                <div className="card-header">
+                  <div className="card-header-title">
+                    {product.product[0].name}
+                  </div>
+                </div>
 
-              <div className="card-content">
-                <div>Status: {status}</div>
-              </div>
+                <div className="card-content">
+                  <div>Status: {product.product[0].image}</div>
+                </div>
 
-              <div className="card-content">
-                <div>Price: {price}</div>
-              </div>
+                <div className="card-content">
+                  <div>Price: {product.product[0].price}</div>
+                </div>
 
-              <div className="card-content">
-                <div>Quantity: {quantity}</div>
+                <div className="card-content">
+                  <div>Quantity: {product.quantity}</div>
+                </div>
               </div>
-
-            </div>
             )
           })}
         </div>
