@@ -56,7 +56,7 @@ function Cart() {
                 </div>
 
                 <div className="card-content">
-                  <div>Status: {product.product[0].image}</div>
+                  <img src={product.product[0].image} alt="" />
                 </div>
 
                 <div className="card-content">
@@ -65,6 +65,9 @@ function Cart() {
 
                 <div className="card-content">
                   <div>Quantity: {product.quantity}</div>
+                </div>
+                <div>
+                  <button className='button' onClick={()=>handleRemoveProduct}>Remove</button>
                 </div>
               </div>
             )
