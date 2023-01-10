@@ -18,7 +18,7 @@ function Home() {
       const ProductsData = await resp.json()
       updateProducts(ProductsData)
     }
-    fetchProducts()
+    fetchProducts() 
   }, [])
 
   return (
