@@ -1,12 +1,16 @@
 import { IProduct } from "./product"
 
 export default interface ICart{
+  name: String,
   products: Array <ICartProduct>,
   status: String,
+  price: number
+  // quantity: String,
   user: { username: string }
 }
 
-interface ICartProduct {
+export interface ICartProduct {
+  name: String,
   product: IProduct,
   quantity: number,
   _id: string
