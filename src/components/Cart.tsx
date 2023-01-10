@@ -5,13 +5,14 @@ import { useParams } from "react-router-dom"
 import axios from "axios"
 import ICart from "../interfaces/cart"
 
-type Products = null | Array<ICart>
+type TCart = null | Array<ICart>
 
-function Cart(/*{user, products, status}: ICart*/) {
-  const [Carts, updateCarts] = React.useState<ICart | null>(null)
+function Cart() {
+  const [Carts, updateCarts] = React.useState<TCart>(null)
   const [errorMessage, setErrorMessage] = useState('')
 
 
+  React.useEffect(() => {
   async function updateCart() {
     try {
       const token = localStorage.getItem('token')
@@ -19,6 +20,7 @@ function Cart(/*{user, products, status}: ICart*/) {
       {headers: { Authorization: `Bearer ${token}` },
     })
     console.log(data)
+    updateCarts(data)
   // .then(function(response) {
     // console.log(response)
   // })
@@ -26,10 +28,16 @@ function Cart(/*{user, products, status}: ICart*/) {
       setErrorMessage(err.response.data.message)
     }
   }
-  React.useEffect(() => {
+    
     updateCart()
   },[])
   
+
+  if(!Carts){
+    return (
+      <p> Loading Cart</p>
+    )
+  }
 
   return (
     <section className="hero is-link is-fullheight-with-navbar is-link">
@@ -40,12 +48,14 @@ function Cart(/*{user, products, status}: ICart*/) {
       </div>
       <div className="is-flex-direction-row">
       <div className="is-flex-direction-row">
-      {/* {Carts?.map((product: ICart) => {
-          return <Cart 
-            key={product._id}
-            {...product}
-          />
-        })} */}
+      {Carts[0].products?.map((product) => {
+        console.log(product);
+        
+          // return < 
+          //   key={product._id}
+          //   {...product}
+          // />
+        })}
       </div>
     </div>
     </section>
