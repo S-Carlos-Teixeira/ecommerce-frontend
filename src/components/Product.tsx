@@ -25,15 +25,15 @@ function Product({ _id, name, description, price, categories, image, quantity, r
         <div className="card-content">
           <div>Quantity: { quantity }</div>
         </div>
-        <div className="card-content">
+        {/* <div className="card-content">
           <div>&pound;:{ price }</div>
-        </div>
-        <div className="card-content">
+        </div> */}
+        {/* <div className="card-content">
           <div>{ categories }</div>
-        </div>
-        <div className="card-content">
+        </div> */}
+        {/* <div className="card-content">
           <div>Quantity:{ quantity }</div>
-        </div>
+        </div> */}
         {/* <div className="card-content">
           <div>{ reviews[0].user.username }</div>
         </div> */}

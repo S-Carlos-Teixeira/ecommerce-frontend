@@ -33,7 +33,7 @@ function App() {
       <Navbar user={user} setUser={setUser} />
       <main>
         <Routes>
-          <Route path="/home" element={<Home />} />
+          <Route path="/" element={<Home />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login fetchUser={fetchUser} />} />
           <Route path="/product/:productId" element={<ShowProduct user={user} setUser={setUser}/>} />

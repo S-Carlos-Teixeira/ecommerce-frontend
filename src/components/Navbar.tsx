@@ -13,7 +13,7 @@ function Navbar({ user, setUser }: NavbarProps) {
   function logout() {
     localStorage.removeItem('token')
     setUser(null)
-    navigate('/home')
+    navigate('/')
   } 
   return(
     <>
@@ -21,7 +21,7 @@ function Navbar({ user, setUser }: NavbarProps) {
       <nav className="navbar is-dark">
         <div className="container">
           <div className="navbar-brand">
-            <Link to="/home" className="navbar-item">
+            <Link to="/" className="navbar-item">
                 Home
             </Link>
             {!user && <Link to="/signup" className="navbar-item">
@@ -37,7 +37,7 @@ function Navbar({ user, setUser }: NavbarProps) {
                 Cart
             </Link>}
             
-            {user && <button onClick={logout} className="button navbar-item is-ghost">
+            {user && <button onClick={logout} className="button navbar-item is-ghost heigth">
                 Logout  
               </button>}
           </div>

@@ -11,26 +11,28 @@ function Cart() {
   const [Carts, updateCarts] = React.useState<TCart>(null)
   const [errorMessage, setErrorMessage] = useState('')
 
-  React.useEffect(() => {
-    async function updateCart() {
-      try {
-        const token = localStorage.getItem('token')
-        const { data } = await axios.get(`/api/cart`, {
-          headers: { Authorization: `Bearer ${token}` }
-        })
-        console.log(data)
-        updateCarts(data)
-        // .then(function(response) {
-        // console.log(response)
-        // })
-      } catch (err: any) {
-        setErrorMessage(err.response.data.message)
-      }
-    }
 
+
+  async function updateCart() {
+    try {
+      const token = localStorage.getItem('token')
+      const { data } = await axios.get(`/api/cart`, {
+        headers: { Authorization: `Bearer ${token}` }
+      })
+      console.log(data)
+      updateCarts(data)
+      // .then(function(response) {
+      // console.log(response)
+      // })
+    } catch (err: any) {
+      setErrorMessage(err.response.data.message)
+    }
+  } 
+  React.useEffect(() => {
     updateCart()
   }, [])
-
+  console.log(Carts);
+  
   if (!Carts) {
     return <p> Loading Cart</p>
   }
@@ -41,8 +43,8 @@ function Cart() {
       const token = localStorage.getItem('token')
       const { data } = await axios.delete(`/api/product/${productId}/cart`, 
       {headers: { Authorization: `Bearer ${token}` }
-      // updateCarts
     })
+    updateCart()
     } catch (err: any) {
       setErrorMessage(err.response.data.message)
     }
