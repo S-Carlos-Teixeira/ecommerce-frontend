@@ -21,6 +21,8 @@ function App() {
     const { data } = await axios.get('/api/user', {
       headers: { Authorization: `Bearer ${token}` }
     })
+    console.log(data);
+    
     setUser(data)
   }
 

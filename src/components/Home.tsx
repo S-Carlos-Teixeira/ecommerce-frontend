@@ -31,7 +31,7 @@ function Home() {
       <h2 className="title has-text-centered is-size-4">Browse Products</h2>
       
       <div className="is-flex-direction-row">
-      <div className="is-flex-direction-row">
+      <div className="columns is-flex-direction-row is-flex-wrap-wrap">
         {Products?.map((product: IProduct) => {
           return <Product 
             key={product._id}
