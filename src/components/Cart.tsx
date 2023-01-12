@@ -1,5 +1,5 @@
 import axios from 'axios'
-import React, { SyntheticEvent, useState } from 'react'
+import React, { SyntheticEvent, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import ICart, { ICartProduct } from '../interfaces/cart'
 import { IProduct } from '../interfaces/product'
@@ -9,8 +9,8 @@ type TCart = null | Array<ICart>
 
 function Cart() {
   const [Carts, updateCarts] = React.useState<TCart>(null)
-  const [errorMessage, setErrorMessage] = useState('')
-
+  // const [total, updateTotal] = React.useState<number>(0)
+  const [errorMessage, setErrorMessage] = useState('') 
 
 
   async function updateCart() {
@@ -19,18 +19,14 @@ function Cart() {
       const { data } = await axios.get(`/api/cart`, {
         headers: { Authorization: `Bearer ${token}` }
       })
-      console.log(data)
       updateCarts(data)
-      // .then(function(response) {
-      // console.log(response)
-      // })
     } catch (err: any) {
       setErrorMessage(err.response.data.message)
     }
   } 
   React.useEffect(() => {
     updateCart()
-  }, [])
+  },[])
   console.log(Carts);
   
   if (!Carts) {
@@ -50,6 +46,25 @@ function Cart() {
     }
   }
 
+  async function handleAddOrder(cartId: String) {
+    
+    try {
+      const token = localStorage.getItem('token')
+      const body = {amount:String(reducedArr)}
+      console.log(body);
+      
+      const { data } = await axios.post(`/api/cart/${cartId}/order`, body,
+      {headers: { Authorization: `Bearer ${token}` }
+    })
+    console.log(data);
+    
+    } catch (err: any) {
+      setErrorMessage(err.response.data.message)
+    }
+  }
+
+  const sumArr = [] as Array<number>
+  let reducedArr :number = 0
   return (
     <section className="hero is-link is-fullheight-with-navbar is-link">
       <div className="hero-body has-text-centered">
@@ -61,34 +76,47 @@ function Cart() {
         <div className="is-flex-direction-row">
           {Carts[0].products?.map(product => {
             console.log(product)
+            sumArr.push(product.quantity * Number(product.product.price))
+            console.log(sumArr);
+            reducedArr = sumArr.reduce((acc,current)=>{
+              return acc + current
+            })
+            console.log(reducedArr)      
 
             return (
-              <div className="card">
+              
+              <div className="card" key={product._id}>
                 <div className="card-header">
                   <div className="card-header-title">
-                    {product.product[0].name}
+                    <h2>{product.product.name}</h2>
                   </div>
                 </div>
 
                 <div className="card-content">
-                  <div> <img src={product.product[0].image} /></div>
+                  <div> <img src={product.product.image} /></div>
                 </div>
 
                 <div className="card-content">
-                  <div>Price: {product.product[0].price}</div>
+                  <p>Price: {product.product.price}</p>
                 </div>
 
                 <div className="card-content">
-                  <div>Quantity: {product.quantity}</div>
+                  <p>Quantity: {product.quantity}</p>
                 </div>
-
+                <div className="card-content">
+                  <p>Total: {product.quantity * Number(product.product.price)}</p>
+                </div>
                 <div>
-                  {<button className="button" onClick={() => handleRemoveFromCart(product.product[0]._id)}>Remove from cart</button>}
+                  {<button className="button" onClick={() => handleRemoveFromCart(product.product._id)}>Remove from cart</button>}
                 </div>
               </div>
-            )
+            ) 
           })}
+          </div>
+        {<p>Total: {reducedArr}</p>}
         </div>
+        <div>
+        {<button className='button'onClick={()=> handleAddOrder(Carts[0]._id)}>Order</button>}
       </div>
     </section>
   )

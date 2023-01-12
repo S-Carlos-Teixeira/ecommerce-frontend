@@ -1,5 +1,5 @@
 export interface IOrder{
-  amount: Number,
+  amount: String,
   status: String,
   user: { username: string }
 }
