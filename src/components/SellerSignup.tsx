@@ -12,6 +12,7 @@ export default function SellerSignup() {
     mobile: "",
     password: "",
     passwordConfirmation: "",
+    isSeller:true
   })
 
   const [errorData, setErrorData] = useState({
@@ -20,6 +21,7 @@ export default function SellerSignup() {
     mobile: "",
     password: "",
     passwordConfirmation: "",
+    isSeller:true
   })
 
   async function handleSubmit(e: SyntheticEvent) {

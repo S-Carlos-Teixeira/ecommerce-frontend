@@ -3,4 +3,5 @@ export interface IUser {
   mobile: String,
   email: String,
   password: String,
+  isSeller:boolean
 } 

@@ -20,7 +20,7 @@ export default function Login({ fetchUser }: { fetchUser: Function }) {
       const token: string = data.token
       localStorage.setItem('token', token)
       fetchUser()
-      navigate('/home')
+      navigate('/')
     } catch (err: any) {
       setErrorMessage(err.response.data.message)
     }

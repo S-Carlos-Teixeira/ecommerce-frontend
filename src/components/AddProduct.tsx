@@ -32,7 +32,7 @@ export default function AddProduct() {
         headers: { Authorization: `Bearer ${token}` }
       })
       console.log(data)
-      navigate('/home')
+      navigate('/')
     } catch (err: any) {
       setErrorData(err.response.data.errors)
     }
