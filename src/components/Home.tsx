@@ -22,12 +22,14 @@ function Home() {
   }, [])
 
   return (
-    <section className="hero is-link is-fullheight-with-navbar is-link">
+    <section className="section">
       <div className="hero-body has-text-centered">
         <div className="container">
           <p className="title">Project Ecommerce</p>
         </div>
       </div>
+      <h2 className="title has-text-centered is-size-4">Browse Products</h2>
+      
       <div className="is-flex-direction-row">
       <div className="is-flex-direction-row">
         {Products?.map((product: IProduct) => {
@@ -40,6 +42,14 @@ function Home() {
     </div>
     </section>
   )
+
+    // <section className="section">
+  //   <div className="container">
+  //     <div className="columns mt-5 is-8 is-variable">
+        
+  //     </div>
+  //   </div>
+  // </section>
 }
 
 export default Home

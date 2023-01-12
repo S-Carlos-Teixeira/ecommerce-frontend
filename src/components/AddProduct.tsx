@@ -49,90 +49,112 @@ export default function AddProduct() {
   }
 
   return (
-  <div>
-    <div>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Product Name</label>
-          <div>
-            <input
-              type="text"
-              name={'name'}
-              onChange={handleChange}
-              value={newProduct.name}
-            />
-            {errorData.name && <small>{errorData.name}</small>}
+    <div className="section">
+      <div className="container">
+        <form onSubmit={handleSubmit}>
+          <div className="field">
+            <label className="label">Product Name</label>
+            <div className="control">
+              <input
+                className="input"
+                type="text"
+                name={'name'}
+                onChange={handleChange}
+                value={newProduct.name}
+              />
+              {errorData.name && <small>{errorData.name}</small>}
+            </div>
           </div>
-        </div>
 
-        <div>
-          <label>Product Description</label>
-          <div>
-            <input
-              type="text"
-              name={'description'}
-              onChange={handleChange}
-              value={newProduct.description}
-            />
-            {errorData.description && <small>{errorData.description}</small>}
+          <div className="field">
+            <label className="label">Product Description</label>
+            <div className="control">
+              <textarea
+                className="textarea"
+                placeholder="Enter Description"
+                name={'description'}
+                onChange={handleChange}
+                value={newProduct.description}
+              ></textarea>
+              {errorData.description && <small>{errorData.description}</small>}
+            </div>
           </div>
-        </div>
 
-        <div>
-          <label>Product Price</label>
-          <div>
-            <input
-              type="text"
-              name={'price'}
-              onChange={handleChange}
-              value={newProduct.price}
-            />
-            {errorData.price && <small>{errorData.price}</small>}
+          <div className="field">
+            <label className="label">Product Price</label>
+            <div className="control">
+              <input
+                className="input"
+                type="text"
+                name={'price'}
+                onChange={handleChange}
+                value={newProduct.price}
+              />
+              {errorData.price && <small>{errorData.price}</small>}
+            </div>
           </div>
-        </div>
 
-        <div>
-          <label>Product Category</label>
-          <div>
-            <input
-              type="text"
-              name={'categories'}
-              onChange={handleChange}
-              value={newProduct.categories}
-            />
-            {errorData.categories && <small>{errorData.categories}</small>}
+          <div className="field">
+            <label className="label">Product Category</label>
+            <div className="control">
+              <div
+                className="select"
+                name={'categories'}
+                onChange={handleChange}
+                value={newProduct.categories}
+              >
+                <select>
+                  <option> Select </option>
+                  <option> Electronics </option>
+                  <option> Clothing </option>
+                  <option> Home and Kitchen </option>
+                  <option> Personal care </option>
+                  <option> Books </option>
+                  <option> Pet supplies </option>
+                </select>
+              </div>
+              {errorData.categories && <small>{errorData.categories}</small>}
+            </div>
           </div>
-        </div>
 
-        <div>
-          <label>Product Image</label>
-          <div>
-            <input
-              type="text"
-              name={'image'}
-              onChange={handleChange}
-              value={newProduct.image}
-            />
-            {errorData.image && <small>{errorData.image}</small>}
+          <div className="field">
+            <label className="label">Product Image</label>
+            <div className="control">
+              <input
+                className="input"
+                type="text"
+                name={'image'}
+                onChange={handleChange}
+                value={newProduct.image}
+              />
+              {errorData.image && <small>{errorData.image}</small>}
+            </div>
           </div>
-        </div>
 
-        <div>
-          <label>Product Quantity</label>
-          <div>
-            <input
-              type="text"
-              name={'quantity'}
-              onChange={handleChange}
-              value={newProduct.quantity}
-            />
-            {errorData.quantity && <small>{errorData.quantity}</small>}
+          <div className="field">
+            <label className="label">Product Quantity</label>
+            <div className="control">
+              <input
+                className="input"
+                type="text"
+                name={'quantity'}
+                onChange={handleChange}
+                value={newProduct.quantity}
+              />
+              {errorData.quantity && <small>{errorData.quantity}</small>}
+            </div>
           </div>
-        </div>
 
-        <button className="button">Add Product</button>
-      </form>
+          <div className="field">
+            <div className="control">
+              <label className="checkbox">I agree to the <a href="#">terms and conditions</a> </label>
+                <input type="checkbox"/>
+            </div>
+          </div>
+
+          <button className="button">Add Product</button>
+        </form>
+      </div>
     </div>
-  </div>
   )
 }
