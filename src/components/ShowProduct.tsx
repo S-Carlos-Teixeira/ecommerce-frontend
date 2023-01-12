@@ -1,5 +1,5 @@
 import React, { SyntheticEvent, useState } from 'react'
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { IProduct } from "../interfaces/product"
 import Product from "./Product"
 import axios from "axios"
@@ -14,15 +14,17 @@ function ShowProduct({ user, setUser }: ShowProductProps) {
   const [product, updateProducts] = React.useState<IProduct | null>(null)
   const [errorMessage, setErrorMessage] = useState('')
   const { productId, userId } = useParams()
-
+  const navigate = useNavigate()
   async function handleAddToCart(e: SyntheticEvent) {
     e.preventDefault()
     try {
       const token = localStorage.getItem('token')
       const { data } = await axios.post(`/api/product/${productId}/cart`, productId, 
       {headers: { Authorization: `Bearer ${token}` }
+      
     })
       console.log(productId, userId)
+      navigate('/')
     } catch (err: any) {
       setErrorMessage(err.response.data.message)
     }
