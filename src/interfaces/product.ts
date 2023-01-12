@@ -4,10 +4,11 @@ export interface IProduct {
   description: string,
   price: string,
   categories: string,
-  image: string
-  quantity: string
-  reviews: Array<IReviews>
-  user: { username: string }
+  image: string,
+  quantity: string,
+  reviews: Array<IReviews>,
+  user: { username: string },
+  showDescription?: boolean
 }
 interface IReviews {
   comment: string,

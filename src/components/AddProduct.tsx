@@ -1,4 +1,4 @@
-import React, { SyntheticEvent, useState } from 'react'
+import React, { SyntheticEvent, useState, ChangeEvent } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
@@ -38,6 +38,12 @@ export default function AddProduct() {
     }
   }
 
+  function handleSelect(e: ChangeEvent<HTMLSelectElement>) {
+    const newFormData = structuredClone(newProduct) 
+    newFormData[e.target.name] = e.target.value
+      setNewProduct(newFormData)
+  }
+
   function handleChange(e: any) {
     const newFormData = structuredClone(newProduct)
     newFormData[e.target.name] = e.target.value
@@ -70,7 +76,7 @@ export default function AddProduct() {
             <label className="label">Product Description</label>
             <div className="control">
               <textarea
-                className="textarea"
+                className="textarea has-fixed-size"
                 placeholder="Enter Description"
                 name={'description'}
                 onChange={handleChange}
@@ -99,12 +105,13 @@ export default function AddProduct() {
             <div className="control">
               <div
                 className="select"
-                name={'categories'}
-                onChange={handleChange}
-                value={newProduct.categories}
               >
-                <select>
-                  <option> Select </option>
+                <select
+                  defaultValue="Options"
+                  name={'categories'}
+                  value={newProduct.categories}
+                  onChange={handleSelect}
+                  >
                   <option> Electronics </option>
                   <option> Clothing </option>
                   <option> Home and Kitchen </option>
@@ -148,7 +155,7 @@ export default function AddProduct() {
           <div className="field">
             <div className="control">
               <label className="checkbox">I agree to the <a href="#">terms and conditions</a> </label>
-                <input type="checkbox"/>
+              <input type="checkbox" />
             </div>
           </div>
 

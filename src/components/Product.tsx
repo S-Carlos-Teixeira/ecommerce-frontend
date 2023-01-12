@@ -3,7 +3,7 @@ import { IProduct } from "../interfaces/product"
 function Product({ _id, name, description, price, categories, image, quantity, reviews }: IProduct) {
   return <div className="column is-one-quarter-desktop is-one-third-tablet">
     <Link to={`/product/${_id}`}>
-      <div className="card">
+      <div className="card m-5">
         <div className="card-header">
           <div className="card-header-title">{name}</div>
         </div>

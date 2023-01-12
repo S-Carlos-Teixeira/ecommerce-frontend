@@ -22,7 +22,7 @@ function Home() {
   }, [])
 
   return (
-    <section className="section">
+    <section className="hero is-fullheight">
       <div className="hero-body has-text-centered">
         <div className="container">
           <p className="title">Project Ecommerce</p>
@@ -42,14 +42,6 @@ function Home() {
     </div>
     </section>
   )
-
-    // <section className="section">
-  //   <div className="container">
-  //     <div className="columns mt-5 is-8 is-variable">
-        
-  //     </div>
-  //   </div>
-  // </section>
 }
 
 export default Home
