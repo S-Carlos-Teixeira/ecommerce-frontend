@@ -12,6 +12,8 @@ import ShowProduct from "./components/ShowProduct"
 // import Address from "./components/Address"
 import SellerSignup from "./components/SellerSignup"
 import Cart from "./components/Cart"
+import Order from "./components/Order"
+
 
 function App() {
   const [user, setUser] = useState<null | IUser>(null)
@@ -42,6 +44,7 @@ function App() {
           <Route path="/addproduct" element={<AddProduct />} />
           <Route path="/seller/signup" element={<SellerSignup />} />
           <Route path="/cart" element={<Cart />}/>
+          <Route path="/order" element={<Order />}/>
           {/* <Route path="/address" element={<Address />} /> */}
           {/* <Route path="/payment" element={<Payment />} /> */}
         </Routes>
