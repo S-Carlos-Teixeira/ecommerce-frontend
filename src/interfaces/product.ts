@@ -8,7 +8,7 @@ export interface IProduct {
   quantity: string,
   reviews: Array<IReviews>,
   user: { username: string },
-  showDescription?: boolean
+  isHome?: boolean
 }
 interface IReviews {
   comment: string,

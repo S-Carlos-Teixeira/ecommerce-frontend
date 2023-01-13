@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom"
+import { Link, useNavigate } from 'react-router-dom'
 import { IUser } from '../interfaces/user'
 
 interface NavbarProps {
@@ -7,43 +7,60 @@ interface NavbarProps {
 }
 
 function Navbar({ user, setUser }: NavbarProps) {
-
   const navigate = useNavigate()
 
   function logout() {
     localStorage.removeItem('token')
     setUser(null)
     navigate('/')
-  } 
-  return(
+  }
+  return (
     <>
-    <header>
-      <nav className="navbar is-dark">
-        <div className="container">
+      <header>
+        <nav className="navbar is-transparent is-fixed-top">
           <div className="navbar-brand">
-            <Link to="/" className="navbar-item">
-                Home
+            <Link to="/" className="navbar-item image">
+              <img
+                className=""
+                src="src\resources\img\logo-no-bg.png"
+                alt="logo"
+              />
             </Link>
-            {!user && <Link to="/signup" className="navbar-item">
-                Sign Up
-            </Link>}
-            {!user && <Link to="/login" className="navbar-item">
-                Log In
-            </Link>}
-            {user?.isSeller && <Link to="/addproduct" className="navbar-item">
-                Add product
-            </Link>}
-            {user && <Link to="/cart" className="navbar-item">
-                Cart
-            </Link>}
-            
-            {user && <button onClick={logout} className="button navbar-item is-ghost heigth">
-                Logout  
-              </button>}
           </div>
-        </div>
-      </nav>
-    </header>
+          <div className="navbar-menu ">
+            <Link to="/" className="navbar-item">
+              Home
+            </Link>
+            {user?.isSeller && (
+              <Link to="/addproduct" className="navbar-item">
+                Add product
+              </Link>
+            )}
+            {user && (
+              <Link to="/cart" className="navbar-item">
+                Cart
+              </Link>
+            )}
+          </div>
+          <div className="navbar-end">
+            {!user && (
+              <Link to="/signup" className="navbar-item">
+                Sign Up
+              </Link>
+            )}
+            {!user && (
+              <Link to="/login" className="navbar-item">
+                Log In
+              </Link>
+            )}
+            {user && (
+              <button onClick={logout} className="navbar-item button is-ghost">
+                Logout
+              </button>
+            )}
+          </div>
+        </nav>
+      </header>
     </>
   )
 }

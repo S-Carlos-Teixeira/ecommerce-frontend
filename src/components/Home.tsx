@@ -36,6 +36,7 @@ function Home() {
           return <Product 
             key={product._id}
             {...product}
+            isHome = {true}
           />
         })}
       </div>

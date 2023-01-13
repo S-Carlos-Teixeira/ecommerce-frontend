@@ -1,6 +1,6 @@
 import React, { SyntheticEvent, useState } from 'react'
 import axios from 'axios'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 export default function Signup() {
 
@@ -116,6 +116,9 @@ export default function Signup() {
       </div>
       <button className="button">Register</button>
     </form>
+  </div>
+  <div className='container'>
+    <p>Already registered? <Link to={'/login'}>Login</Link></p>
   </div>
 </div>
 }
