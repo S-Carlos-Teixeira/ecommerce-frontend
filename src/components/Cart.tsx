@@ -1,9 +1,10 @@
 import axios from 'axios'
 import React, { SyntheticEvent, useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import ICart, { ICartProduct } from '../interfaces/cart'
 import { IProduct } from '../interfaces/product'
 import Product from './Product'
+
 
 type TCart = null | Array<ICart>
 
@@ -11,7 +12,7 @@ function Cart() {
   const [Carts, updateCarts] = React.useState<TCart>(null)
   // const [total, updateTotal] = React.useState<number>(0)
   const [errorMessage, setErrorMessage] = useState('') 
-
+  const navigate = useNavigate()
 
   async function updateCart() {
     try {
@@ -57,7 +58,7 @@ function Cart() {
       {headers: { Authorization: `Bearer ${token}` }
     })
     console.log(data);
-    
+    navigate('/order')
     } catch (err: any) {
       setErrorMessage(err.response.data.message)
     }
