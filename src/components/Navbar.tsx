@@ -41,6 +41,11 @@ function Navbar({ user, setUser }: NavbarProps) {
                 Cart
               </Link>
             )}
+            {user && (
+              <Link to="/order" className="navbar-item">
+                Order
+              </Link>
+            )}
           </div>
           <div className="navbar-end">
             {!user && (

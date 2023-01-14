@@ -1,7 +1,7 @@
 import axios from 'axios'
 import React, { SyntheticEvent, useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
-import ICart, { ICartProduct } from '../interfaces/cart'
+import { useNavigate } from 'react-router-dom'
+import ICart from '../interfaces/cart'
 import { IProduct } from '../interfaces/product'
 import Product from './Product'
 
@@ -11,7 +11,7 @@ function Cart() {
   const [Carts, updateCarts] = React.useState<TCart>(null)
   // const [total, updateTotal] = React.useState<number>(0)
   const [errorMessage, setErrorMessage] = useState('') 
-
+  const navigate = useNavigate()
 
   async function updateCart() {
     try {
@@ -24,7 +24,7 @@ function Cart() {
       setErrorMessage(err.response.data.message)
     }
   } 
-  React.useEffect(() => {
+  useEffect(() => {
     updateCart()
   },[])
   console.log(Carts);
@@ -53,10 +53,11 @@ function Cart() {
       const body = {amount:String(reducedArr)}
       console.log(body);
       
-      const { data } = await axios.post(`/api/cart/${cartId}/order`, body,
+    const { data } = await axios.post(`/api/cart/${cartId}/order`, body,
       {headers: { Authorization: `Bearer ${token}` }
     })
     console.log(data);
+    navigate('/order')
     
     } catch (err: any) {
       setErrorMessage(err.response.data.message)
@@ -116,7 +117,7 @@ function Cart() {
         {<p>Total: {reducedArr}</p>}
         </div>
         <div>
-        {<button className='button'onClick={()=> handleAddOrder(Carts[0]._id)}>Order</button>}
+        {<button className='button'onClick={()=> handleAddOrder(Carts[0]._id)} >Order</button>}
       </div>
     </section>
   )

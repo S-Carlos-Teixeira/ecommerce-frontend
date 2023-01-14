@@ -4,8 +4,8 @@ import { IOrder } from "../interfaces/order"
 
 
 
-function Order() {
-  const [Orders, updateOrders] = useState<IOrder | null>(null)
+export default function Order() {
+  const [orders, updateOrders] = useState<IOrder | null>(null)
   const [errorMessage, setErrorMessage] = useState('')
 
   async function updateOrder() {
@@ -22,24 +22,17 @@ function Order() {
   React.useEffect(() => {
     updateOrder()
   }, [])
-  console.log(Orders);
+  console.log(orders);
 
-  if (!Orders) {
+  if (!orders) {
     return <p> Loading Your Items</p>
   }
 
 
-  return (
-
-    <div>
+  return ( <div>
       <h2>Thank you for your order!</h2>
       <h3>Order summary:</h3>
     </div>
-
   )
-
-
-
 }
 
-export default Order()
