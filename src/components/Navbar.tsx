@@ -43,7 +43,7 @@ function Navbar({ user, setUser }: NavbarProps) {
             )}
             {user && (
               <Link to="/order" className="navbar-item">
-                Your order
+                Order
               </Link>
             )}
           </div>

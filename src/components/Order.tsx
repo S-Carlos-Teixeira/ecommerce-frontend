@@ -5,7 +5,7 @@ import { IOrder } from "../interfaces/order"
 
 
 export default function Order() {
-  const [Orders, updateOrders] = useState<IOrder | null>(null)
+  const [orders, updateOrders] = useState<IOrder | null>(null)
   const [errorMessage, setErrorMessage] = useState('')
 
   async function updateOrder() {
@@ -22,17 +22,13 @@ export default function Order() {
   React.useEffect(() => {
     updateOrder()
   }, [])
-  console.log(Orders);
+  console.log(orders);
 
-  if (!Orders) {
+  if (!orders) {
     return <p> Loading Your Items</p>
   }
 
   return (
-    <div>
-      <h2>Thank you for your order</h2>
-      <h3>Order summary:</h3>
-    </div>
-  )
 
+  )
 }
