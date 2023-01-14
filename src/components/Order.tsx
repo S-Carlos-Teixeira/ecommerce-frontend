@@ -28,11 +28,8 @@ export default function Order() {
     return <p> Loading Your Items</p>
   }
 
+  return (
 
-  return ( <div>
-      <h2>Thank you for your order!</h2>
-      <h3>Order summary:</h3>
-    </div>
   )
-}
 
+}

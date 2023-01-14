@@ -5,6 +5,7 @@ import ICart from '../interfaces/cart'
 import { IProduct } from '../interfaces/product'
 import Product from './Product'
 
+
 type TCart = null | Array<ICart>
 
 function Cart() {
@@ -58,7 +59,6 @@ function Cart() {
     })
     console.log(data);
     navigate('/order')
-    
     } catch (err: any) {
       setErrorMessage(err.response.data.message)
     }
