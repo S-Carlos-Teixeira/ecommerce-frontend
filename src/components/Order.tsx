@@ -29,8 +29,11 @@ export default function Order() {
   }
 
   return (
-    <div>
-      <h2>Your order</h2>
+    <div className="section">
+      <div className="container">
+      <h2 className="is-size-3">Your order</h2>
+      <h2 className="is-size-5">Order summary:</h2>
+      </div>
     </div>
   )
 }

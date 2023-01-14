@@ -27,6 +27,11 @@ function Navbar({ user, setUser }: NavbarProps) {
               />
             </Link>
           </div>
+          <a role="button" className="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
           <div className="navbar-menu ">
             <Link to="/" className="navbar-item">
               Home
