@@ -57,7 +57,7 @@ export default function AddProduct() {
 
   return (
     <div className="section">
-      <div className="container">
+      <div className="container pt-6">
         <form onSubmit={handleSubmit}>
           <div className="field">
             <label className="label">Product Name</label>

@@ -26,7 +26,7 @@ function Home() {
     <section className="hero is-fullheight">
       <div className="hero-body has-text-centered">
         <div className="container">
-          <p className="title">Project Ecommerce</p>
+          <p className="title pt-6">Project Ecommerce</p>
         </div>
       </div>
       <h2 className="title has-text-centered is-size-4">Browse Products</h2>

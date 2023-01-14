@@ -37,7 +37,7 @@ function ShowProduct({ user, setUser }: ShowProductProps) {
 
   React.useEffect(() => {
     async function fetchProducts() {
-      const resp = await fetch(`/api/product/${productId}`)
+      const resp = await fetch(`${baseUrl}/product/${productId}`)
       const ProductsData = await resp.json()
       updateProducts(ProductsData)
       console.log(ProductsData);

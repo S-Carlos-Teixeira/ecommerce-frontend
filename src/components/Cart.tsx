@@ -12,7 +12,7 @@ type TCart = null | Array<ICart>
 function Cart() {
   const [Carts, updateCarts] = React.useState<TCart>(null)
   // const [total, updateTotal] = React.useState<number>(0)
-  const [errorMessage, setErrorMessage] = useState('') 
+  const [errorMessage, setErrorMessage] = useState('')
   const navigate = useNavigate()
 
   async function updateCart() {
@@ -25,48 +25,50 @@ function Cart() {
     } catch (err: any) {
       setErrorMessage(err.response.data.message)
     }
-  } 
+  }
   useEffect(() => {
     updateCart()
-  },[])
+  }, [])
   console.log(Carts);
-  
-  if (!Carts) {
-    return <p> Loading Cart</p>
-  }
 
+  if (!Carts) {
+    return <img src="https://www.vinsolutions.com/wp-content/uploads/sites/2/vinsolutions/media/Vin-Images/news-blog/Empty_Shopping_Cart_blog.jpg"/>
+  }
+  
   async function handleRemoveFromCart(productId: String) {
-    
+
     try {
       const token = localStorage.getItem('token')
-      const { data } = await axios.delete(`/api/product/${productId}/cart`, 
-      {headers: { Authorization: `Bearer ${token}` }
-    })
-    updateCart()
+      const { data } = await axios.delete(`${baseUrl}/product/${productId}/cart`,
+        {
+          headers: { Authorization: `Bearer ${token}` }
+        })
+      updateCart()
     } catch (err: any) {
       setErrorMessage(err.response.data.message)
     }
   }
 
   async function handleAddOrder(cartId: String) {
-    
+
     try {
       const token = localStorage.getItem('token')
-      const body = {amount:String(reducedArr)}
+      const body = { amount: String(reducedArr) }
       console.log(body);
-      
-    const { data } = await axios.post(`/api/cart/${cartId}/order`, body,
-      {headers: { Authorization: `Bearer ${token}` }
-    })
-    console.log(data);
-    navigate('/order')
+
+      const { data } = await axios.post(`${baseUrl}/cart/${cartId}/order`, body,
+        {
+          headers: { Authorization: `Bearer ${token}` }
+        })
+      console.log(data);
+      navigate('/order')
     } catch (err: any) {
       setErrorMessage(err.response.data.message)
     }
   }
 
   const sumArr = [] as Array<number>
-  let reducedArr :number = 0
+  let reducedArr: number = 0
   return (
     <section className="hero is-link is-fullheight-with-navbar is-link">
       <div className="hero-body has-text-centered">
@@ -80,13 +82,14 @@ function Cart() {
             console.log(product)
             sumArr.push(product.quantity * Number(product.product.price))
             console.log(sumArr);
-            reducedArr = sumArr.reduce((acc,current)=>{
+            reducedArr = sumArr.reduce((acc, current) => {
               return acc + current
             })
-            console.log(reducedArr)      
+            console.log(reducedArr)
+
+            
 
             return (
-              
               <div className="card" key={product._id}>
                 <div className="card-header">
                   <div className="card-header-title">
@@ -112,13 +115,13 @@ function Cart() {
                   {<button className="button" onClick={() => handleRemoveFromCart(product.product._id)}>Remove from cart</button>}
                 </div>
               </div>
-            ) 
+            )
           })}
-          </div>
-        {<p>Total: {reducedArr}</p>}
         </div>
-        <div>
-        {<button className='button'onClick={()=> handleAddOrder(Carts[0]._id)} >Order</button>}
+        {<p>Total: {reducedArr}</p>}
+      </div>
+      <div>
+        {<button className='button' onClick={() => handleAddOrder(Carts[0]._id)} >Order</button>}
       </div>
     </section>
   )
