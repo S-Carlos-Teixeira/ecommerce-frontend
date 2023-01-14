@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import ICart from '../interfaces/cart'
 import { IProduct } from '../interfaces/product'
 import Product from './Product'
+import { baseUrl } from "../config"
 
 
 type TCart = null | Array<ICart>
@@ -17,7 +18,7 @@ function Cart() {
   async function updateCart() {
     try {
       const token = localStorage.getItem('token')
-      const { data } = await axios.get(`/api/cart`, {
+      const { data } = await axios.get(`${baseUrl}/cart`, {
         headers: { Authorization: `Bearer ${token}` }
       })
       updateCarts(data)

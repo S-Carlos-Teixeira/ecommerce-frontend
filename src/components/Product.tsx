@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom"
 import { IProduct } from "../interfaces/product"
+import { baseUrl } from "../config"
+
 function Product({ _id, name, description, price, categories, image, quantity, reviews, isHome }: IProduct) {
   return <div className="column is-one-quarter-desktop is-one-third-tablet">
     <Link to={`/product/${_id}`}>

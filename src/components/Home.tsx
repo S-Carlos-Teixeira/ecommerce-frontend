@@ -1,6 +1,7 @@
 import React from "react"
 import { IProduct } from "../interfaces/product"
 import Product from "./Product"
+import { baseUrl } from "../config"
 
 type Products = null | Array<IProduct>
 
@@ -14,7 +15,7 @@ function Home() {
 
   React.useEffect(() => {
     async function fetchProducts() {
-      const resp = await fetch("/api/products")
+      const resp = await fetch(`${baseUrl}/products`)
       const ProductsData = await resp.json()
       updateProducts(ProductsData)
     }

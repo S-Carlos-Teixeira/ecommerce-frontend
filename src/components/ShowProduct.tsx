@@ -4,6 +4,7 @@ import { IProduct } from "../interfaces/product"
 import Product from "./Product"
 import axios from "axios"
 import {IUser} from "../interfaces/user"
+import { baseUrl } from "../config"
 
 interface ShowProductProps {
   user: IUser | null
@@ -19,7 +20,7 @@ function ShowProduct({ user, setUser }: ShowProductProps) {
     e.preventDefault()
     try {
       const token = localStorage.getItem('token')
-      const { data } = await axios.post(`/api/product/${productId}/cart`, productId, 
+      const { data } = await axios.post(`${baseUrl}/product/${productId}/cart`, productId, 
       {headers: { Authorization: `Bearer ${token}` }
       
     })

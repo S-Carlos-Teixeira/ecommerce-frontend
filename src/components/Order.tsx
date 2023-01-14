@@ -1,8 +1,7 @@
 import axios from "axios"
 import React, { useState } from "react"
 import { IOrder } from "../interfaces/order"
-
-
+import { baseUrl } from "../config"
 
 export default function Order() {
   const [orders, updateOrders] = useState<IOrder | null>(null)
@@ -11,7 +10,7 @@ export default function Order() {
   async function updateOrder() {
     try {
       const token = localStorage.getItem('token')
-      const { data } = await axios.get(`/api/order`, {
+      const { data } = await axios.get(`${baseUrl}/order`, {
         headers: { Authorization: `Bearer ${token}` }
       })
       updateOrders(data)

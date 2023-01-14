@@ -1,5 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { IUser } from '../interfaces/user'
+import { baseUrl } from "../config"
 
 interface NavbarProps {
   user: IUser | null

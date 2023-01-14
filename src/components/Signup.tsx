@@ -1,6 +1,7 @@
 import React, { SyntheticEvent, useState } from 'react'
 import axios from 'axios'
 import { Link, useNavigate } from 'react-router-dom'
+import { baseUrl } from "../config"
 
 export default function Signup() {
 
@@ -25,7 +26,7 @@ export default function Signup() {
   async function handleSubmit(e: SyntheticEvent) {
     e.preventDefault()
     try {
-      await axios.post('/api/signup', formData)
+      await axios.post(`${baseUrl}/signup`, formData)
       navigate('/login')
     } catch (err: any) {
       setErrorData(err.response.data.errors)
