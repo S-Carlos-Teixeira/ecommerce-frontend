@@ -22,7 +22,7 @@ function Navbar({ user, setUser }: NavbarProps) {
             <Link to="/" className="navbar-item image">
               <img
                 className=""
-                src="src\resources\img\logo-no-bg.png"
+                src="./src/resources/img/logo-no-bg.png"
                 alt="logo"
               />
             </Link>

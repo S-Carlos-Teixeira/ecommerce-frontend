@@ -16,8 +16,8 @@ function Product({ _id, name, description, price, categories, image, quantity, r
         {!isHome && <div className="card-content">
           <div>Category: { categories }</div>
         </div>}
-        <div className="card-image has-border " >
-          <figure className="image is-3by2 ">
+        <div className="card-image container " >
+          <figure className="image  ">
             <img src={image} className="card-img-top" alt={name} />
           </figure>
         </div>
