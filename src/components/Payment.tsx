@@ -74,7 +74,7 @@ export default function Payment() {
           </div>
         </div>
 
-        <button className="button">Add card details</button>
+        <button className="">Add card details</button>
       </form>
     </div>
   </div>

@@ -19,9 +19,9 @@ function Navbar({ user, setUser }: NavbarProps) {
   return (
     <>
       <header>
-        <nav className="navbar is-transparent is-fixed-top">
-          <div className="navbar-brand">
-            <Link to="/" className="navbar-item image">
+        <nav className="">
+          <div className="">
+            <Link to="/" className="">
               <img
                 className=""
                 src={logo}
@@ -29,44 +29,44 @@ function Navbar({ user, setUser }: NavbarProps) {
               />
             </Link>
           </div>
-          <a role="button" className="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+          <a role="button" className="" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
     </a>
-          <div className="navbar-menu ">
-            <Link to="/" className="navbar-item">
+          <div className="">
+            <Link to="/" className="">
               Home
             </Link>
             {user?.isSeller && (
-              <Link to="/addproduct" className="navbar-item">
+              <Link to="/addproduct" className="">
                 Add product
               </Link>
             )}
             {user && (
-              <Link to="/cart" className="navbar-item">
+              <Link to="/cart" className="">
                 Cart
               </Link>
             )}
             {user && (
-              <Link to="/order" className="navbar-item">
+              <Link to="/order" className="">
                 Order
               </Link>
             )}
           </div>
-          <div className="navbar-end">
+          <div className="">
             {!user && (
-              <Link to="/signup" className="navbar-item">
+              <Link to="/signup" className="">
                 Sign Up
               </Link>
             )}
             {!user && (
-              <Link to="/login" className="navbar-item">
+              <Link to="/login" className="">
                 Log In
               </Link>
             )}
             {user && (
-              <button onClick={logout} className="navbar-item button is-ghost">
+              <button onClick={logout} className="">
                 Logout
               </button>
             )}

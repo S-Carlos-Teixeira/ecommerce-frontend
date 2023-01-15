@@ -23,16 +23,16 @@ function Home() {
   }, [])
 
   return (
-    <section className="hero is-fullheight">
-      <div className="hero-body has-text-centered">
-        <div className="container">
-          <p className="title pt-6">Project Ecommerce</p>
+    <section className="">
+      <div className="">
+        <div className="">
+          <p className="">Project Ecommerce</p>
         </div>
       </div>
-      <h2 className="title has-text-centered is-size-4">Browse Products</h2>
+      <h2 className="">Browse Products</h2>
       
-      <div className="is-flex-direction-row">
-      <div className="columns is-flex-direction-row is-flex-wrap-wrap">
+      <div className="">
+      <div className="">
         {Products?.map((product: IProduct) => {
           return <Product 
             key={product._id}

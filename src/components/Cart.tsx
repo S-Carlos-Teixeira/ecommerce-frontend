@@ -70,14 +70,14 @@ function Cart() {
   const sumArr = [] as Array<number>
   let reducedArr: number = 0
   return (
-    <section className="hero is-link is-fullheight-with-navbar is-link">
-      <div className="hero-body has-text-centered">
-        <div className="container">
-          <p className="title">Your Cart</p>
+    <section className="">
+      <div className="">
+        <div className="">
+          <p className="">Your Cart</p>
         </div>
       </div>
-      <div className="is-flex-direction-row">
-        <div className="is-flex-direction-row">
+      <div className="">
+        <div className="">
           {Carts[0].products?.map(product => {
             console.log(product)
             sumArr.push(product.quantity * Number(product.product.price))
@@ -90,29 +90,29 @@ function Cart() {
             
 
             return (
-              <div className="card" key={product._id}>
-                <div className="card-header">
-                  <div className="card-header-title">
+              <div className="" key={product._id}>
+                <div className="">
+                  <div className="">
                     <h2>{product.product.name}</h2>
                   </div>
                 </div>
 
-                <div className="card-content">
+                <div className="">
                   <div> <img src={product.product.image} /></div>
                 </div>
 
-                <div className="card-content">
+                <div className="">
                   <p>Price: {product.product.price}</p>
                 </div>
 
-                <div className="card-content">
+                <div className="">
                   <p>Quantity: {product.quantity}</p>
                 </div>
-                <div className="card-content">
+                <div className="">
                   <p>Total: {product.quantity * Number(product.product.price)}</p>
                 </div>
                 <div>
-                  {<button className="button" onClick={() => handleRemoveFromCart(product.product._id)}>Remove from cart</button>}
+                  {<button className="" onClick={() => handleRemoveFromCart(product.product._id)}>Remove from cart</button>}
                 </div>
               </div>
             )
@@ -121,7 +121,7 @@ function Cart() {
         {<p>Total: {reducedArr}</p>}
       </div>
       <div>
-        {<button className='button' onClick={() => handleAddOrder(Carts[0]._id)} >Order</button>}
+        {<button className="" onClick={() => handleAddOrder(Carts[0]._id)} >Order</button>}
       </div>
     </section>
   )

@@ -45,79 +45,79 @@ export default function SellerSignup() {
     setErrorData(newErrorData)
   }
 
-  return <div className="section">
-  <div className="container">
+  return <div className="">
+  <div className="">
     <form onSubmit={handleSubmit}>
-      <div className="field">
-        <label className="label">Username</label>
-        <div className="control">
+      <div className="">
+        <label className="">Username</label>
+        <div className="">
           <input
-            className="input"
+            className=""
             type="text"
             name={'username'}
             onChange={handleChange}
             value={formData.username}
           />
-          {errorData.username && <small className="has-text-danger">{errorData.username}</small>}
+          {errorData.username && <small className="">{errorData.username}</small>}
         </div>
       </div>
 
-      <div className="field">
-        <label className="label">Email</label>
-        <div className="control">
+      <div className="">
+        <label className="">Email</label>
+        <div className="">
           <input
-            className="input"
+            className=""
             type="text"
             name={'email'}
             onChange={handleChange}
             value={formData.email}
           />
-          {errorData.email && <small className="has-text-danger">{errorData.email}</small>}
+          {errorData.email && <small className="">{errorData.email}</small>}
         </div>
       </div>
 
-      <div className="field">
-        <label className="label">Mobile Number</label>
-        <div className="control">
+      <div className="">
+        <label className="">Mobile Number</label>
+        <div className="">
           <input
-            className="input"
+            className=""
             type="text"
             name={'mobile'}
             onChange={handleChange}
             value={formData.mobile}
           />
-          {errorData.mobile && <small className="has-text-danger">{errorData.mobile}</small>}     
+          {errorData.mobile && <small className="">{errorData.mobile}</small>}     
         </div>
       </div>
 
-      <div className="field">
-        <label className="label">Password</label>
-        <div className="control">
+      <div className="">
+        <label className="">Password</label>
+        <div className="">
           <input
-            className="input"
+            className=""
             type="password"
             name={'password'}
             onChange={handleChange}
             value={formData.password}
           />
-          {errorData.password && <small className="has-text-danger">{errorData.password}</small>}
+          {errorData.password && <small className="">{errorData.password}</small>}
         </div>
       </div>
 
-      <div className="field">
-        <label className="label">Re-enter Password</label>
-        <div className="control">
+      <div className="">
+        <label className="">Re-enter Password</label>
+        <div className="">
           <input
-            className="input"
+            className=""
             type="password"
             name={'passwordConfirmation'}
             onChange={handleChange}
             value={formData.passwordConfirmation}
           />
-          {errorData.passwordConfirmation && <small className="has-text-danger">{errorData.passwordConfirmation}</small>}
+          {errorData.passwordConfirmation && <small className="">{errorData.passwordConfirmation}</small>}
         </div>
       </div>
-      <button className="button">Register</button>
+      <button className="">Register</button>
     </form>
   </div>
 </div>

@@ -55,7 +55,7 @@ function ShowProduct({ user, setUser }: ShowProductProps) {
         />}
       </div>
       <div>
-        {user && <button className="button" onClick={handleAddToCart}>Add to cart</button>}
+        {user && <button className="" onClick={handleAddToCart}>Add to cart</button>}
       </div>
     </div>
   </section>

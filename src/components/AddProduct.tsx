@@ -56,14 +56,14 @@ export default function AddProduct() {
   }
 
   return (
-    <div className="section">
-      <div className="container pt-6">
+    <section className="">
+      <div className="">
         <form onSubmit={handleSubmit}>
-          <div className="field">
-            <label className="label">Product Name</label>
-            <div className="control">
+          <div className="">
+            <label className="">Product Name</label>
+            <div className="">
               <input
-                className="input"
+                className=""
                 type="text"
                 name={'name'}
                 onChange={handleChange}
@@ -73,11 +73,11 @@ export default function AddProduct() {
             </div>
           </div>
 
-          <div className="field">
-            <label className="label">Product Description</label>
-            <div className="control">
+          <div className="">
+            <label className="">Product Description</label>
+            <div className="">
               <textarea
-                className="textarea has-fixed-size"
+                className=""
                 placeholder="Enter Description"
                 name={'description'}
                 onChange={handleChange}
@@ -87,11 +87,11 @@ export default function AddProduct() {
             </div>
           </div>
 
-          <div className="field">
-            <label className="label">Product Price</label>
-            <div className="control">
+          <div className="">
+            <label className="">Product Price</label>
+            <div className="">
               <input
-                className="input"
+                className=""
                 type="text"
                 name={'price'}
                 onChange={handleChange}
@@ -101,11 +101,11 @@ export default function AddProduct() {
             </div>
           </div>
 
-          <div className="field">
-            <label className="label">Product Category</label>
-            <div className="control">
+          <div className="">
+            <label className="">Product Category</label>
+            <div className="">
               <div
-                className="select"
+                className=""
               >
                 <select
                   defaultValue="Options"
@@ -125,11 +125,11 @@ export default function AddProduct() {
             </div>
           </div>
 
-          <div className="field">
-            <label className="label">Product Image</label>
-            <div className="control">
+          <div className="">
+            <label className="">Product Image</label>
+            <div className="">
               <input
-                className="input"
+                className=""
                 type="text"
                 name={'image'}
                 onChange={handleChange}
@@ -139,11 +139,11 @@ export default function AddProduct() {
             </div>
           </div>
 
-          <div className="field">
-            <label className="label">Product Quantity</label>
-            <div className="control">
+          <div className="">
+            <label className="">Product Quantity</label>
+            <div className="">
               <input
-                className="input"
+                className=""
                 type="text"
                 name={'quantity'}
                 onChange={handleChange}
@@ -153,16 +153,16 @@ export default function AddProduct() {
             </div>
           </div>
 
-          <div className="field">
-            <div className="control">
-              <label className="checkbox">I agree to the <a href="#">terms and conditions</a> </label>
+          <div className="">
+            <div className="">
+              <label className="">I agree to the <a href="#">terms and conditions</a> </label>
               <input type="checkbox" />
             </div>
           </div>
 
-          <button className="button">Add Product</button>
+          <button className="">Add Product</button>
         </form>
       </div>
-    </div>
+    </section>
   )
 }
