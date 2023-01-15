@@ -1,6 +1,7 @@
 import React, { SyntheticEvent, useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import { baseUrl } from "../config"
 
 export default function Payment() {
 
@@ -17,7 +18,7 @@ export default function Payment() {
   async function handleSubmit(e: SyntheticEvent) {
     e.preventDefault()
     try {
-      const { data } = await axios.post('/api/payment', formData)
+      const { data } = await axios.post(`${baseUrl}/payment`, formData)
       navigate('/home')
     } catch (err: any) {
       setErrorMessage(err.response.data.message)

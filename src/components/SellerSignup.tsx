@@ -1,6 +1,7 @@
 import React, { SyntheticEvent, useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import { baseUrl } from "../config"
 
 export default function SellerSignup() {
 
@@ -27,7 +28,7 @@ export default function SellerSignup() {
   async function handleSubmit(e: SyntheticEvent) {
     e.preventDefault()
     try {
-      await axios.post('/api/seller/signup', formData)
+      await axios.post(`${baseUrl}/seller/signup`, formData)
       navigate('/login')
     } catch (err: any) {
       setErrorData(err.response.data.errors)

@@ -1,6 +1,7 @@
 import React, { SyntheticEvent, useState, ChangeEvent } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import { baseUrl } from "../config"
 
 export default function AddProduct() {
 
@@ -28,7 +29,7 @@ export default function AddProduct() {
     e.preventDefault()
     try {
       const token = localStorage.getItem('token')
-      const { data } = await axios.post('/api/addproduct', newProduct, {
+      const { data } = await axios.post(`${baseUrl}/addproduct`, newProduct, {
         headers: { Authorization: `Bearer ${token}` }
       })
       console.log(data)
@@ -56,7 +57,7 @@ export default function AddProduct() {
 
   return (
     <div className="section">
-      <div className="container">
+      <div className="container pt-6">
         <form onSubmit={handleSubmit}>
           <div className="field">
             <label className="label">Product Name</label>
