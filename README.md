@@ -1,1 +1,5 @@
-# ecommerce-frontend
+# Project3 - MERN E-Commerce
+
+## Description
+
+

@@ -53,9 +53,10 @@ function ShowProduct({ user, setUser }: ShowProductProps) {
           key={product._id}
           {...product}
         />}
+        
       </div>
       <div>
-        {user && <button className="" onClick={handleAddToCart}>Add to cart</button>}
+        {user && <button className="btn btn-success" onClick={handleAddToCart}>Add to cart</button>}
       </div>
     </div>
   </section>

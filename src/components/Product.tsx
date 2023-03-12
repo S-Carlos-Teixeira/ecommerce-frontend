@@ -1,33 +1,49 @@
-import { Link } from "react-router-dom"
-import { IProduct } from "../interfaces/product"
-import { baseUrl } from "../config"
+import { Link } from 'react-router-dom'
+import { IProduct } from '../interfaces/product'
+import { baseUrl } from '../config'
 
-function Product({ _id, name, description, price, categories, image, quantity, reviews, isHome }: IProduct) {
-  return <div className="">
-    <Link to={`/product/${_id}`}>
-      <div className="">
-        <div className="">
-          <div className="">{name}</div>
+function Product({
+  _id,
+  name,
+  description,
+  price,
+  categories,
+  image,
+  quantity,
+  reviews,
+  isHome
+}: IProduct) {
+  return (
+    <div className="border border-2 rounded m-3   justify-content-center align-items-center ">
+      <Link to={`/product/${_id}`} className="nav-link  d-flex ">
+        
+        <img src={image} className=" rounded-1 bg-light w-25 m-auto p-3"  alt={name} />
+        
+        <div className="card-body p-3">
+          <h5 className="card-title fw-bolder">{name}</h5>
+
+          {!isHome && (
+            <p className="card-text">
+              Description: {description}
+            </p>
+          )}
+          <p className="card-text fs-5">
+            £{price}
+          </p>
+          {!isHome && (
+            <p className="card-text">
+              Category: {categories}
+            </p>
+          )}
+          {!isHome && (
+            <p className="card-text">
+              <div>Quantity: {quantity}</div>
+            </p>
+          )}
         </div>
-        {!isHome && <div className="">
-          <div>Description: { description }</div>
-        </div>}
-        <div className="">
-          <div>Price = £{ price }</div>
-        </div>
-        {!isHome && <div className="">
-          <div>Category: { categories }</div>
-        </div>}
-        <div className="" >
-          <figure className="">
-            <img src={image} className="" alt={name} />
-          </figure>
-        </div>
-        {!isHome && <div className="">
-          <div>Quantity: { quantity }</div>
-        </div>}
-      </div>
-    </Link>
-  </div>
+      </Link>
+      
+    </div>
+  )
 }
 export default Product

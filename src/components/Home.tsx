@@ -1,16 +1,15 @@
-import React from "react"
-import { IProduct } from "../interfaces/product"
-import Product from "./Product"
-import { baseUrl } from "../config"
+import React from 'react'
+import { IProduct } from '../interfaces/product'
+import Product from './Product'
+import { baseUrl } from '../config'
 
 type Products = null | Array<IProduct>
-
 
 function Home() {
   const [Products, updateProducts] = React.useState<Products>(null)
 
   React.useEffect(() => {
-    console.log("The Home Page has mounted")
+    console.log('The Home Page has mounted')
   }, [])
 
   React.useEffect(() => {
@@ -19,29 +18,27 @@ function Home() {
       const ProductsData = await resp.json()
       updateProducts(ProductsData)
     }
-    fetchProducts() 
+    fetchProducts()
   }, [])
 
   return (
     <section className="">
       <div className="">
         <div className="">
-          <p className="">Project Ecommerce</p>
+
         </div>
       </div>
-      <h2 className="">Browse Products</h2>
       
-      <div className="">
-      <div className="">
-        {Products?.map((product: IProduct) => {
-          return <Product 
-            key={product._id}
-            {...product}
-            isHome = {true}
-          />
-        })}
+      <div className="bg-warning p-4 ">
+      <h2 className="text-center">Browse Products</h2>
+        <div className="container bg-body rounded-4 ">
+          <div className=" justify-content-center d-flex flex-column ">
+            {Products?.map((product: IProduct) => {
+              return <Product key={product._id} {...product} isHome={true} />
+            })}
+          </div>
+        </div>
       </div>
-    </div>
     </section>
   )
 }
