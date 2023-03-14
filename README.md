@@ -62,9 +62,14 @@ The project was made in a group of two, to be completed within 11 days, where I 
 ## Planning
 
 We started the project by planning the tasks and features we wanted to implement. We then split the tasks between us, and then I started to work on the Back-end. We used **[Jira](https://www.atlassian.com/software/jira)** to keep track of our progress and tasks.
- 
-The code management was done using **[GitHub,](https://docs.github.com/en)** as we were working on different project sides, we usually didn`t had any conflicts, but during the polishing / bug solving stage, we joined efforts on the front-end to solve some bugs and eventually some conflicts had hapened.
 
+![JiraOverview](./git-img/JiraOverview.png)
+
+The code management was done using **[GitHub,](https://docs.github.com/en)** as we were working on different project sides, we usually didn`t had any conflicts, but during the polishing / bug solving stage, we joined efforts on the front-end to solve some bugs and eventually some conflicts had happened.
+
+I worked on the modeling of models and its relationships.
+
+![models](./git-img/e-commerceDbERD.png)
 ## Technical Reference
 ### Front-end
 * **[Axios](https://www.npmjs.com/package/axios)**
