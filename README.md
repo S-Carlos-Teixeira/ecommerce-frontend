@@ -49,6 +49,10 @@ The project was made in a group of two, to be completed within 11 days, where I 
 * validator
 * VS Code
 
+### Side Tools
+* Jira
+* Escalidraw
+
 ## Brief
 
 * Work in a team, using **git to code collaboratively**.
@@ -67,9 +71,54 @@ We started the project by planning the tasks and features we wanted to implement
 
 The code management was done using **[GitHub,](https://docs.github.com/en)** as we were working on different project sides, we usually didn`t had any conflicts, but during the polishing / bug solving stage, we joined efforts on the front-end to solve some bugs and eventually some conflicts had happened.
 
-I worked on the modeling of models and its relationships.
+The first step on the Back-end was the modeling of models and its relationships. when we had the models ready, we started to work on the routes.
 
 ![models](./git-img/e-commerceDbERD.png)
+
+```TypeScript
+const router = express.Router()
+
+router.route('/test').get((req: Request, res: Response) => {
+  res.send('Test successfull')
+  console.log('Test successfull')
+})
+
+//user endpoints
+
+router.route('/signup').post(signup)
+router.route('/login').post(login)
+router.route('/seller/signup').post(sellerSignup)
+router.route('/user').get(secureRoute, getCurrentUser)
+
+// product endpoints
+router.route('/products').get(getProducts)
+router.route('/product/:productId')
+  .get(getProduct)
+  .put(secureRoute, updateProduct)
+  .delete(secureRoute, deleteProduct)
+router.route('/addproduct').post(secureRoute, addProduct)
+
+//comments endpoints
+router.route('/product/:productId/comment').post(secureRoute, addComment)
+router.route('/product/:productId/comment/:commentId')
+  .put(secureRoute, updateComment)
+  .delete(secureRoute, deleteComment)
+
+//cart endpoints
+router.route('/cart').get(secureRoute, getCart)
+router.route('/product/:productId/cart')
+.post(secureRoute, addProductsToCart)
+.put(secureRoute, updateProductsToCart)
+.delete(secureRoute, deleteCartProducts)
+router.route('/cart/:cartId').delete(secureRoute, deleteCart)
+
+// order endpoints
+router.route('/order').get(secureRoute, getOrder)
+router.route('/cart/:cartId/order').post(secureRoute, addOrder)
+```
+
+
+
 ## Technical Reference
 ### Front-end
 * **[Axios](https://www.npmjs.com/package/axios)**
@@ -101,13 +150,199 @@ I worked on the modeling of models and its relationships.
 * **[Node.js](https://nodejs.org/en/docs/)**
 * **[validator](https://www.npmjs.com/package/validator)**
 
+### Side Tools
+* **[Jira](https://www.atlassian.com/software/jira)**
+* **[Escalidraw](https://github.com/excalidraw/excalidraw#documentation)**
+
 ## Build/Code Process
 
 
 
 ## Challenges
+The first challenge was to work collaboratively on the same project, but we managed to overcome it with a good planning and communication. Jira was a great tool to keep track of the tasks and the progress. Git was also a great tool to keep track of the changes and the conflicts. The use of branches was also a great way to avoid conflicts.
 
+The second challenge was to design the database, in the way that we avoid the duplication of data. I solved this using the references and the population of the data. Eg. when you put a product in the cart, its create a array of products, but instead of storing the product data, it stores the product id, and when you need to get the product data, you can use the product id to get the product data from the product collection. 
+
+you can see below, how the cart is structured on database, the response, and how I populated the product data.
+
+``` TypeScript
+const cart = await Cart.find({ user: [currentUser] }).populate({path:'products.product'})
+```
+
+![Cart DB](./git-img/Cart.png) 
+
+```JSON
+[
+	{
+		"_id": "640e43cb5b400f619d7b35e6",
+		"user": "63b748ba6186992ed4195c97",
+		"products": [
+			{
+				"product": {
+					"_id": "63b748ba6186992ed4195ca2",
+					"name": "ryzen 5 5600X",
+					"price": 170,
+					"quantity": 1,
+					"user": "63b748ba6186992ed4195c97",
+					"reviews": [
+						{
+							"comment": "nice upgrade for my old R5 1600",
+							"rating": 5,
+							"user": "63b748ba6186992ed4195c97",
+							"_id": "63b98b6560c3b3844943c8fe",
+							"createdAt": "2023-01-07T15:10:29.057Z",
+							"updatedAt": "2023-01-07T15:10:29.057Z"
+						},
+						{
+							"comment": "nice upgrade for my old R5 1600",
+							"rating": 5,
+							"user": "63b748ba6186992ed4195c97",
+							"_id": "63b991696e6bd0cf53d32266",
+							"createdAt": "2023-01-07T15:36:09.408Z",
+							"updatedAt": "2023-01-07T15:36:09.408Z"
+						},
+						{
+							"comment": "nice upgrade for my old R5 1600",
+							"rating": 5,
+							"user": "63b748ba6186992ed4195c97",
+							"_id": "63b991a271a98ccc95377556",
+							"createdAt": "2023-01-07T15:37:06.314Z",
+							"updatedAt": "2023-01-07T15:37:06.314Z"
+						}
+					],
+					"createdAt": "2023-01-05T22:01:30.655Z",
+					"updatedAt": "2023-01-07T15:37:06.315Z",
+					"__v": 3,
+					"image": "https://www.laptop.lk/wp-content/uploads/2022/01/AMD-Ryzen-5-5600X-Processor-01-1.jpg",
+					"categories": "CPU"
+				},
+				"quantity": 1,
+				"_id": "640e43cb5b400f619d7b35e7"
+			},
+			{
+				"product": {
+					"_id": "63bebdd520e8b00cd7eb677f",
+					"name": "WD 2TB Elements Portable External Hard Drive - USB 3.0",
+					"description": "USB 3.0 and USB 2.0 Compatibility Fast data transfers Improve PC Performance High Capacity; Compatibility Formatted NTFS for Windows 10, Windows 8.1, Windows 7; Reformatting may be required for other operating systems; Compatibility may vary depending on user’s hardware configuration and operating system",
+					"price": 64,
+					"image": "https://fakestoreapi.com/img/61IBBVJvSDL._AC_SY879_.jpg",
+					"quantity": 1,
+					"user": "63b748ba6186992ed4195c97",
+					"reviews": [],
+					"createdAt": "2023-01-11T13:47:01.018Z",
+					"updatedAt": "2023-01-11T13:47:01.018Z",
+					"__v": 0,
+					"categories": "HDD/SSD"
+				},
+				"quantity": 1,
+				"_id": "641220888a9ac9c06bb36e3b"
+			}
+		],
+		"isCheckedOut": true,
+		"createdAt": "2023-03-12T21:27:39.613Z",
+		"updatedAt": "2023-03-15T19:46:16.156Z",
+		"__v": 5
+```
+
+This structure is only possible because of the references and the population of the data, it save a lot of space on the database, it's easier to manage the data structure and the data itself.
+
+I had a bit more problem with this data structure and the population of the data on the order controller, because I had to populate the data from the cart, and then populate the data from the product. I solved this using nested population. the method is the same, but you have to pass the path of the data you want to populate (cart), the nested path of the data you want to populate (product), and the model for the nested data. 
+
+``` TypeScript
+const order = await Order.find({user: [currentUser] }).populate('user').populate({path:'cart', populate:{path: 'products.product', model:'Product'}})
+```
+
+![OrderDB](./git-img/OrderDB.png)
+
+```JSON 
+[
+	{
+		"_id": "640e43d15b400f619d7b35fb",
+		"user": {
+			"username": "carlos",
+			"isSeller": true
+		},
+		"cart": {
+			"_id": "640e43cb5b400f619d7b35e6",
+			"user": "63b748ba6186992ed4195c97",
+			"products": [
+				{
+					"product": {
+						"_id": "63b748ba6186992ed4195ca2",
+						"name": "ryzen 5 5600X",
+						"price": 170,
+						"quantity": 1,
+						"user": "63b748ba6186992ed4195c97",
+						"reviews": [
+							{
+								"comment": "nice upgrade for my old R5 1600",
+								"rating": 5,
+								"user": "63b748ba6186992ed4195c97",
+								"_id": "63b98b6560c3b3844943c8fe",
+								"createdAt": "2023-01-07T15:10:29.057Z",
+								"updatedAt": "2023-01-07T15:10:29.057Z"
+							},
+							{
+								"comment": "nice upgrade for my old R5 1600",
+								"rating": 5,
+								"user": "63b748ba6186992ed4195c97",
+								"_id": "63b991696e6bd0cf53d32266",
+								"createdAt": "2023-01-07T15:36:09.408Z",
+								"updatedAt": "2023-01-07T15:36:09.408Z"
+							},
+							{
+								"comment": "nice upgrade for my old R5 1600",
+								"rating": 5,
+								"user": "63b748ba6186992ed4195c97",
+								"_id": "63b991a271a98ccc95377556",
+								"createdAt": "2023-01-07T15:37:06.314Z",
+								"updatedAt": "2023-01-07T15:37:06.314Z"
+							}
+						],
+						"createdAt": "2023-01-05T22:01:30.655Z",
+						"updatedAt": "2023-01-07T15:37:06.315Z",
+						"__v": 3,
+						"image": "https://www.laptop.lk/wp-content/uploads/2022/01/AMD-Ryzen-5-5600X-Processor-01-1.jpg",
+						"categories": "CPU"
+					},
+					"quantity": 1,
+					"_id": "640e43cb5b400f619d7b35e7"
+				},
+				{
+					"product": {
+						"_id": "63bebdd520e8b00cd7eb677f",
+						"name": "WD 2TB Elements Portable External Hard Drive - USB 3.0",
+						"description": "USB 3.0 and USB 2.0 Compatibility Fast data transfers Improve PC Performance High Capacity; Compatibility Formatted NTFS for Windows 10, Windows 8.1, Windows 7; Reformatting may be required for other operating systems; Compatibility may vary depending on user’s hardware configuration and operating system",
+						"price": 64,
+						"image": "https://fakestoreapi.com/img/61IBBVJvSDL._AC_SY879_.jpg",
+						"quantity": 1,
+						"user": "63b748ba6186992ed4195c97",
+						"reviews": [],
+						"createdAt": "2023-01-11T13:47:01.018Z",
+						"updatedAt": "2023-01-11T13:47:01.018Z",
+						"__v": 0,
+						"categories": "HDD/SSD"
+					},
+					"quantity": 1,
+					"_id": "641220888a9ac9c06bb36e3b"
+				}
+			],
+			"isCheckedOut": true,
+			"createdAt": "2023-03-12T21:27:39.613Z",
+			"updatedAt": "2023-03-15T19:46:16.156Z",
+			"__v": 5
+		},
+		"amount": 170,
+		"status": "pending",
+		"createdAt": "2023-03-12T21:27:45.287Z",
+		"updatedAt": "2023-03-12T21:27:45.287Z",
+		"__v": 0
+	}
+]
+```
 ## Wins
+
+
 
 ## Key Learnings/Takeaways
 
