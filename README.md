@@ -1,16 +1,16 @@
 # Project3 MERN E-Commerce
 
 ## Description
-This is a full stack e-commerce website built with the MERN (Mongoose, Express, React, Node) stack. The website allows users to browse products, add them to their cart, and purchase them. The website also allows users to register and login. As a Admin you can also create new products. The website is deployed on Netlify, and the API on fly.io the Back-end also uses MongoDB Atlas for the database.
+This e-commerce website is a complete stack application built using the MERN stack, comprising Mongoose, Express, React, and Node. Users can navigate through the website, add items to their cart, and complete purchases. Users can also register and log in. As an admin, one can create new products. The website is deployed on Netlify, and the API on fly.io. The Back-end uses MongoDB Atlas to store data in the database.
 
 ## Getting Started
 
-The project can be accessed on **[my GitHub profile on ecommerce-frontend repository,](https://github.com/scarlosteixeira/ecommerce-frontend)** **[and the Back-end on ecommerce-api repository.](https://github.com/scarlosteixeira/ecommerce-api)** <br>
+The project can be accessed on **[my GitHub profile on ecommerce-frontend repository,](https://github.com/scarlosteixeira/ecommerce-frontend)** **[and the Back-end on the ecommerce-api repository.](https://github.com/scarlosteixeira/ecommerce-api)** <br>
 This project is open source and can be downloaded, used and modified by anyone, as far as credit is given.
 
-The project was made in a group of two, to be completed within 11 days, where I have been responsable for the Back-end and my partner, **[AlishanKably,](https://github.com/AlishanKably/Project-03)** for the Front-end. The project is split as it follows: <br>
+The project was made in a group of two, to be completed within 11 days, where I have been responsible for the Back-end and my partner, **[AlishanKably,](https://github.com/AlishanKably/Project-03)** for the Front-end. The project is split as it follows: <br>
 
-1. 2 day of whiteboarding and singing off.
+1. 2 days of whiteboarding and singing off.
 2. 5 days for research, development and coding.
 3. 2 days to get a minimum viable project.
 4. 1 day for polishing, bug fixing.
@@ -65,13 +65,13 @@ The project was made in a group of two, to be completed within 11 days, where I 
 
 ## Planning
 
-We started the project by planning the tasks and features we wanted to implement. We then split the tasks between us, and then I started to work on the Back-end. We used **[Jira](https://www.atlassian.com/software/jira)** to keep track of our progress and tasks.
+To kick off the project, we first planned the tasks and features that we wanted to implement, before dividing the work amongst ourselves. I took on the Back-end development, while we utilized the project management tool **[Jira](https://www.atlassian.com/software/jira)** to monitor our progress and tasks.
 
 ![JiraOverview](./git-img/JiraOverview.png)
 
-The code management was done using **[GitHub,](https://docs.github.com/en)** as we were working on different project sides, we usually didn`t had any conflicts, but during the polishing / bug solving stage, we joined efforts on the front-end to solve some bugs and eventually some conflicts had happened.
+For code management, we utilized **[GitHub,](https://docs.github.com/en)** Given that we were working on different project aspects, we didn't have many conflicts, but when we were polishing and addressing bugs, we collaborated on the front-end and some conflicts did occur.
 
-The first step on the Back-end was the modeling of models and its relationships. when we had the models ready, we started to work on the routes.
+The Back-end development began with the modeling of the database models and their relationships. Once the models were finalized, we proceeded to work on the routes
 
 ![models](./git-img/e-commerceDbERD.png)
 
@@ -79,8 +79,8 @@ The first step on the Back-end was the modeling of models and its relationships.
 const router = express.Router()
 
 router.route('/test').get((req: Request, res: Response) => {
-  res.send('Test successfull')
-  console.log('Test successfull')
+  res.send('Test successful')
+  console.log('Test successful')
 })
 
 //user endpoints
@@ -116,8 +116,6 @@ router.route('/cart/:cartId').delete(secureRoute, deleteCart)
 router.route('/order').get(secureRoute, getOrder)
 router.route('/cart/:cartId/order').post(secureRoute, addOrder)
 ```
-
-
 
 ## Technical Reference
 ### Front-end
@@ -155,15 +153,66 @@ router.route('/cart/:cartId/order').post(secureRoute, addOrder)
 * **[Escalidraw](https://github.com/excalidraw/excalidraw#documentation)**
 
 ## Build/Code Process
+### Back-end
 
+To build the back-end, I adopted the Model-View-Controller (MVC) approach, which comprises three main components: the Model, the View, and the Controller. The Model represents the data layer and handles data management and organization. The View represents the presentation layer and is responsible for the user interface through the API routes. Finally, the Controller represents the logic layer and manages the application's business logic and the flow of data between the Model and the View.
+
+I began the development process by working on the models and their respective relationships. During this phase, I simultaneously worked on the seed file to test the models and populate the database.
+  
+  * This is the product model:
+
+``` TypeScript
+    export const productSchema = new mongoose.Schema(
+    {
+      name: { type: String, required: [true, 'Enter a valid name'] },
+      description: { type: String },
+      price: { type: Number, required: [true, 'Enter a price']
+      },
+      categories: { type: String },
+      image: { type: String },
+      quantity: { type: Number, required: [true, 'Enter a quantity'] },
+      reviews: [reviewSchema],
+      user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true }
+    },
+    { timestamps: true }
+  )
+  export default mongoose.model('Product', productSchema)
+```
+After finishing the model layer, the next step was to create the routes. Although creating most of the routes was simple, some of them required authentication. In order to achieve this, a middleware was created to handle all routes that required authentication. When a user logs in, a token is generated and stored in the local storage. When the user makes a request to a protected route, the token is sent in the header. The middleware then verifies the token using the jsonwebtoken package. If the token is valid, the user is allowed to access the route. If the token is invalid, an error message is returned. This process helps to secure the routes that require authentication.
+
+``` TypeScript
+  export default function secureRoute( req: Request, res: Response, next: NextFunction) {
+  const rawToken = req.headers.authorization
+  if (!rawToken) {
+    return res
+      .status(StatusCodes.UNAUTHORIZED)
+      .json({ message: 'Unauthorized' })
+  }
+  const token = rawToken.replace('Bearer ', '')
+  jwt.verify(token, secret, async (err, payload) => {
+    if (err || !payload) {
+      return res
+        .status(StatusCodes.UNAUTHORIZED)
+        .json({ message: 'Unauthorized' })
+    }
+    const jwtPayload = payload as JwtPayload
+    const user = await Users.findById(jwtPayload.userId)
+    if (!user) {
+      return res
+        .status(StatusCodes.UNAUTHORIZED)
+        .json({ message: 'Unauthorized' })
+    }
+    req.currentUser = user
+    next()
+  })
+}
+```
 
 
 ## Challenges
-The first challenge was to work collaboratively on the same project, but we managed to overcome it with a good planning and communication. Jira was a great tool to keep track of the tasks and the progress. Git was also a great tool to keep track of the changes and the conflicts. The use of branches was also a great way to avoid conflicts.
+We faced our first challenge in working collaboratively on the same project, but we overcame it with effective planning and communication. To keep track of tasks and progress, we utilized Jira, while Git helped us track changes and conflicts. We also made use of branches to prevent conflicts.
 
-The second challenge was to design the database, in the way that we avoid the duplication of data. I solved this using the references and the population of the data. Eg. when you put a product in the cart, its create a array of products, but instead of storing the product data, it stores the product id, and when you need to get the product data, you can use the product id to get the product data from the product collection. 
-
-you can see below, how the cart is structured on database, the response, and how I populated the product data.
+Our second challenge was designing the database to avoid data duplication. To achieve this, I used references and data population. For instance, when a product is added to the cart, an array of product ids is created instead of storing the product data. To obtain the product data, we can use the product id to retrieve it from the product collection. You can view below how the cart is structured in the database, the response, and how I populated the product data.
 
 ``` TypeScript
 const cart = await Cart.find({ user: [currentUser] }).populate({path:'products.product'})
@@ -244,9 +293,9 @@ const cart = await Cart.find({ user: [currentUser] }).populate({path:'products.p
 		"__v": 5
 ```
 
-This structure is only possible because of the references and the population of the data, it save a lot of space on the database, it's easier to manage the data structure and the data itself.
+The implementation of this structure is made possible through the use of references and data population. As a result, it not only helps to reduce the amount of space required for storing data in the database, but also makes it easier to manage both the data structure and the data itself.
 
-I had a bit more problem with this data structure and the population of the data on the order controller, because I had to populate the data from the cart, and then populate the data from the product. I solved this using nested population. the method is the same, but you have to pass the path of the data you want to populate (cart), the nested path of the data you want to populate (product), and the model for the nested data. 
+However, I encountered some difficulties when working with the data structure and data population in the order controller. Specifically, I needed to populate data from both the cart and product collections, which I addressed through the use of nested population. While the method remained the same, I needed to pass the path of the data to be populated (cart), the nested path of the data to be populated (product), and the model for the nested data. 
 
 ``` TypeScript
 const order = await Order.find({user: [currentUser] }).populate('user').populate({path:'cart', populate:{path: 'products.product', model:'Product'}})
