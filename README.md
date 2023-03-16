@@ -207,6 +207,61 @@ After finishing the model layer, the next step was to create the routes. Althoug
   })
 }
 ```
+Using the express-mongo-sanitize package to prevent NoSQL injection attacks is a good practice for ensuring safety and security. This package helps to sanitize the request body, query string, and params by removing any dollar signs ($) and dots (.) that could be used to inject malicious code into the database. By implementing this package as a middleware in the app.ts file, I have taken an important step towards protecting my application from potential attacks.
+
+``` TypeScript
+  app.use(mongoSanitize())
+```
+
+I made sure to prioritize safety and security when building the user model layer. To protect sensitive data like passwords, emails, and mobile numbers, I utilized the mongoose-hidden package. This allowed me to hide the sensitive data, thus preventing malicious users from accessing it. Additionally, I used the bcrypt package to hash passwords before storing them in the database. This further secured the sensitive information and prevented unauthorized access.
+
+``` TypeScript
+  password: {
+    type: String,
+    required: [true, 'Password is required'],
+    // ! Multiple validators, for different types of error messages on the password
+    validate: [
+      {
+        message: 'Password must be at least 8 characters in length.',
+        validator: (password: string) => password.length >= 8
+      },
+      {
+        message:
+          'Password must contain at least 1 lowercase character, uppercase character, and symbol.',
+        validator: (password: string) =>
+          validator.isStrongPassword(password, {
+            minLowercase: 1,
+            minUppercase: 1,
+            minSymbols: 1,
+            minNumbers: 1
+          })
+      }
+    ]
+  }
+
+userSchema.pre('save', function hashPassword(next) {
+  this.password = bcrypt.hashSync(this.password, bcrypt.genSaltSync())
+  next()
+})
+
+``` 
+``` TypeScript
+  userSchema.plugin(
+  mongooseHidden({ defaultHidden: { password: true, email: true, _id: true, mobile: true } })
+  )
+```
+
+I personally utilized Insomnia to test the API routes, which helped me confirm that each route was working as intended. Insomnia also provided me with a detailed look into the response from the server, and allowed me to closely examine how the Back-end was handling the request and its elements, including the body, params, and the authorization header.
+
+When testing the "get Product" route, I simply needed to provide the product ID as a parameter in the route, and no body or authorization header was necessary. The resulting response was a JSON object containing the relevant product data.
+![Insomnia-get-product](./git-img/Insomnia-get-product.png)
+
+When testing the "add-product" route using Insomnia, I had to provide the product data in the body, and an authorization header was required to ensure that only authenticated users with seller credentials (```isSeller```) could add products. The resulting response was a JSON object containing the product data that was added to the database.
+
+![Insomnia-add-product](./git-img/Insomnia-add-product.png)
+
+### Front-end
+
 
 
 ## Challenges
