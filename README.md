@@ -261,7 +261,85 @@ When testing the "add-product" route using Insomnia, I had to provide the produc
 ![Insomnia-add-product](./git-img/Insomnia-add-product.png)
 
 ### Front-end
+we utilized multiple React components to create the frontend, where each component contained an async function that fetched the API routes. For instance, we used the ```useEffect()``` hook to display individual products available on the online store by fetching their unique IDs. Below is an example of how we achieved this:
 
+``` TypeScript
+React.useEffect(() => {
+    async function fetchProducts() {
+      const resp = await fetch(`${baseUrl}/product/${productId}`)
+      const ProductsData = await resp.json()
+      updateProducts(ProductsData)
+      console.log(ProductsData);
+      
+    }
+    fetchProducts()
+  }, [])
+```
+To authorize users to perform more functions on the app, we created log in and sign up components that allowed the user to create an account through a sign-up and log-in process. After successfully logging in, the user was redirected to the home page, where the available products were shown. This was done by mapping over the individual products and rendering them as cards on the home screen. By clicking on a card, the user could see an expanded description of the product and add it to their cart using the following function:
+
+```TypeScript
+async function handleAddToCart(e: SyntheticEvent) {
+    e.preventDefault()
+    try {
+      const token = localStorage.getItem('token')
+      const { data } = await axios.post(`${baseUrl}/product/${productId}/cart`, productId, 
+      {headers: { Authorization: `Bearer ${token}` }
+      
+    })
+      console.log(productId, userId)
+      navigate('/')
+    } catch (err: any) {
+      setErrorMessage(err.response.data.message)
+    }
+  }
+```
+This function posted the chosen product to the cart database. Once the user completed browsing the products and adding them to the **cart**, they could navigate to the **cart** tab and see the products they had selected using the following code:
+
+```TypeScript
+async function updateCart() {
+    try {
+      const token = localStorage.getItem('token')
+      const { data } = await axios.get(`${baseUrl}/cart`, {
+        headers: { Authorization: `Bearer ${token}` }
+      })
+      updateCarts(data)
+    } catch (err: any) {
+      setErrorMessage(err.response.data.message)
+    }
+  }
+
+useEffect(() => {
+  updateCart()
+}, [])
+```
+
+
+Furthermore, we used a function to calculate the total price of all products in the cart:
+
+``` Typescript
+const sumArr = [] as Array<number>
+let reducedArr: number = 0
+<div className="is-flex-direction-row">
+          {Carts[0].products?.map(product => {
+            console.log(product)
+            sumArr.push(product.quantity * Number(product.product.price))
+            console.log(sumArr);
+            reducedArr = sumArr.reduce((acc, current) => {
+              return acc + current
+            })
+            console.log(reducedArr)
+```
+
+Finally, we linked each component to an interface that described the type of each prop, as shown in the following example:
+
+```TypeScript
+export interface IOrder{
+  amount: String,
+  status: String,
+  cart: ICart,
+  user: { username: string }
+}
+```
 
 
 ## Challenges
@@ -446,10 +524,46 @@ const order = await Order.find({user: [currentUser] }).populate('user').populate
 ```
 ## Wins
 
+To allow a user to sign up as a "seller" using the same interface as a "buyer," I created a new route specifically for signing up as a seller. This route is not available on the navbar or any other page, so users have to know the route to access it. This way, even if a user attempts to change the role on the body of the request for customer sign-up, it won't work due to back-end restrictions.
 
+``` TypeScript
+//customer sign up route
+<Route path="/signup" element={<Signup />} />
+//seller sign up route
+<Route path="/seller/signup" element={<SellerSignup />} />
+```
+**Customer sign up screen**
+
+![customer-signup](./git-img/customer-sign-up.png)
+
+---
+
+**Seller sign up screen**
+
+![seller-signup](./git-img/seller-sign-up.png)
+
+**Back-end restrictions for customer sign up**
+
+``` TypeScript
+    if (checkPasswords(req.body.password, req.body.passwordConfirmation) && !req.body.isSeller) {
+      const user = await User.create(req.body)
+      res.send(user)
+```
 
 ## Key Learnings/Takeaways
 
+Through this project, I was able to develop a better understanding of Back-end MVC architecture and database design. I also gained knowledge on implementing best practices for protecting sensitive user information and preventing security breaches. Additionally, the integration of the Back-end and Front-end helped me build confidence in using standard fetch requests and axios to make API calls.
+
 ## Bugs
 
+Nothigh to report.
+
 ## Future Features
+
+- Add a search bar to search for products by name.
+- Add filters to search for products by many different criteria.
+- Use bootstrap instead of bulma. I dealt with a lot of styling issues with bulma, and I think bootstrap would be a better choice for this project.
+- Make the app mobile first.
+- Style the order page to be more user friendly.
+- Add more functionality to all the pages to make the app more user friendly.
+
