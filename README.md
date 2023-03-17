@@ -213,7 +213,7 @@ Using the express-mongo-sanitize package to prevent NoSQL injection attacks is a
   app.use(mongoSanitize())
 ```
 
-I made sure to prioritize safety and security when building the user model layer. To protect sensitive data like passwords, emails, and mobile numbers, I utilized the mongoose-hidden package. This allowed me to hide the sensitive data, thus preventing malicious users from accessing it. Additionally, I used the bcrypt package to hash passwords before storing them in the database. This further secured the sensitive information and prevented unauthorized access.
+I made sure to prioritise safety and security when building the user model layer. To protect sensitive data like passwords, emails, and mobile numbers, I utilised the mongoose-hidden package. This allowed me to hide the sensitive data, thus preventing malicious users from accessing it. Additionally, I used the bcrypt package to hash passwords before storing them in the database. This further secured the sensitive information and prevented unauthorised access.
 
 ``` TypeScript
   password: {
@@ -251,7 +251,7 @@ userSchema.pre('save', function hashPassword(next) {
   )
 ```
 
-I personally utilized Insomnia to test the API routes, which helped me confirm that each route was working as intended. Insomnia also provided me with a detailed look into the response from the server, and allowed me to closely examine how the Back-end was handling the request and its elements, including the body, params, and the authorization header.
+I personally utilised Insomnia to test the API routes, which helped me confirm that each route was working as intended. Insomnia also provided me with a detailed look into the response from the server, and allowed me to closely examine how the Back-end was handling the request and its elements, including the body, params, and the authorization header.
 
 When testing the "get Product" route, I simply needed to provide the product ID as a parameter in the route, and no body or authorization header was necessary. The resulting response was a JSON object containing the relevant product data.
 ![Insomnia-get-product](./git-img/Insomnia-get-product.png)
@@ -261,7 +261,7 @@ When testing the "add-product" route using Insomnia, I had to provide the produc
 ![Insomnia-add-product](./git-img/Insomnia-add-product.png)
 
 ### Front-end
-we utilized multiple React components to create the frontend, where each component contained an async function that fetched the API routes. For instance, we used the ```useEffect()``` hook to display individual products available on the online store by fetching their unique IDs. Below is an example of how we achieved this:
+We utilized multiple React components to create the frontend, where each component contained an async function that fetched the API routes. For instance, we used the ```useEffect()``` hook to display individual products available on the online store by fetching their unique IDs. Below is an example of how we achieved this:
 
 ``` TypeScript
 React.useEffect(() => {
@@ -275,7 +275,7 @@ React.useEffect(() => {
     fetchProducts()
   }, [])
 ```
-To authorize users to perform more functions on the app, we created log in and sign up components that allowed the user to create an account through a sign-up and log-in process. After successfully logging in, the user was redirected to the home page, where the available products were shown. This was done by mapping over the individual products and rendering them as cards on the home screen. By clicking on a card, the user could see an expanded description of the product and add it to their cart using the following function:
+To authorise users to perform more functions on the app, we created log in and sign up components that allowed the user to create an account through a sign-up and log-in process. After successfully logging in, the user was redirected to the home page, where the available products were shown. This was done by mapping over the individual products and rendering them as cards on the home screen. By clicking on a card, the user could see an expanded description of the product and add it to their cart using the following function:
 
 ```TypeScript
 async function handleAddToCart(e: SyntheticEvent) {
@@ -343,7 +343,7 @@ export interface IOrder{
 
 
 ## Challenges
-We faced our first challenge in working collaboratively on the same project, but we overcame it with effective planning and communication. To keep track of tasks and progress, we utilized Jira, while Git helped us track changes and conflicts. We also made use of branches to prevent conflicts.
+We faced our first challenge in working collaboratively on the same project, but we overcame it with effective planning and communication. To keep track of tasks and progress, we utilised Jira, while Git helped us track changes and conflicts. We also made use of branches to prevent conflicts.
 
 Our second challenge was designing the database to avoid data duplication. To achieve this, I used references and data population. For instance, when a product is added to the cart, an array of product ids is created instead of storing the product data. To obtain the product data, we can use the product id to retrieve it from the product collection. You can view below how the cart is structured in the database, the response, and how I populated the product data.
 
@@ -556,7 +556,7 @@ Through this project, I was able to develop a better understanding of Back-end M
 
 ## Bugs
 
-Nothigh to report.
+Nothing to report.
 
 ## Future Features
 
@@ -566,4 +566,5 @@ Nothigh to report.
 - Make the app mobile first.
 - Style the order page to be more user friendly.
 - Add more functionality to all the pages to make the app more user friendly.
+- Add tests for the Back-end.
 
