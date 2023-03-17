@@ -130,6 +130,7 @@ router.route('/cart/:cartId/order').post(secureRoute, addOrder)
 * **[VS Code](https://code.visualstudio.com/docs)**
 * **[TypeScript](https://www.typescriptlang.org/docs/home.html)**
 
+
 ### Back-end
 * **[bcrypt](https://www.npmjs.com/package/bcrypt)**
 * **[cors](https://www.npmjs.com/package/cors)**
@@ -524,7 +525,7 @@ const order = await Order.find({user: [currentUser] }).populate('user').populate
 ```
 ## Wins
 
-To allow a user to sign up as a "seller" using the same interface as a "buyer," I created a new route specifically for signing up as a seller. This route is not available on the navbar or any other page, so users have to know the route to access it. This way, even if a user attempts to change the role on the body of the request for customer sign-up, it won't work due to back-end restrictions.
+To allow a user to sign up as a "seller" using the same interface as a "buyer," I created a new route specifically for it. This route is not available on the navbar or any other page, so users have to know the route to access it. This way, even if a user attempts to change the role on the body of the request for customer sign-up, it won't work due to back-end restrictions.
 
 ``` TypeScript
 //customer sign up route
