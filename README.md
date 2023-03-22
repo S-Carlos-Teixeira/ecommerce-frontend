@@ -52,6 +52,7 @@ The project was made in a group of two, to be completed within 11 days, where I 
 * **[Jira](https://www.atlassian.com/software/jira)**
 * **[Escalidraw](https://github.com/excalidraw/excalidraw#documentation)**
 
+
 ## Brief
 
 * Work in a team, using **git to code collaboratively**.
