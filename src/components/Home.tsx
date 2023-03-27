@@ -18,12 +18,14 @@ function Home() {
       const resp = await fetch(`${baseUrl}/products`)
       const ProductsData = await resp.json()
       updateProducts(ProductsData)
+      console.log(ProductsData);
+      
     }
     fetchProducts() 
   }, [])
 
   return (
-    <section className="hero is-fullheight">
+    <section id="home" className="hero is-fullheight">
       <div className="hero-body has-text-centered">
         <div className="container">
           <p className="title pt-6">Project Ecommerce</p>
