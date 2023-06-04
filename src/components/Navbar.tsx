@@ -2,13 +2,11 @@ import { Link, useNavigate } from 'react-router-dom'
 import { IUser } from '../interfaces/user'
 import { baseUrl } from '../config'
 import logo from '../resources/img/logo-no-bg.png'
-import { Nav, Navbar as NavbarBs } from 'react-bootstrap'
-import Container from 'react-bootstrap/esm/Container'
 import { NavLink } from 'react-router-dom'
 
 interface NavbarProps {
   user: IUser | null
-  setUser: Function
+  setUser: ({})=> void
 }
 
 function Navbar({ user, setUser }: NavbarProps) {
@@ -108,4 +106,3 @@ function Navbar({ user, setUser }: NavbarProps) {
 }
 
 export default Navbar
-

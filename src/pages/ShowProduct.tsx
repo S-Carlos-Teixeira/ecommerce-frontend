@@ -1,10 +1,10 @@
+import axios from 'axios'
 import React, { SyntheticEvent, useState } from 'react'
-import { useNavigate, useParams } from "react-router-dom"
-import { IProduct } from "../interfaces/product"
-import Product from "./Product"
-import axios from "axios"
-import {IUser} from "../interfaces/user"
-import { baseUrl } from "../config"
+import { useNavigate, useParams } from 'react-router-dom'
+import Product from '../components/Product'
+import { baseUrl } from '../config'
+import { IProduct } from '../interfaces/product'
+import { IUser } from '../interfaces/user'
 
 interface ShowProductProps {
   user: IUser | null
@@ -20,10 +20,11 @@ function ShowProduct({ user, setUser }: ShowProductProps) {
     e.preventDefault()
     try {
       const token = localStorage.getItem('token')
-      const { data } = await axios.post(`${baseUrl}/product/${productId}/cart`, productId, 
-      {headers: { Authorization: `Bearer ${token}` }
-      
-    })
+      const { data } = await axios.post(
+        `${baseUrl}/product/${productId}/cart`,
+        productId,
+        { headers: { Authorization: `Bearer ${token}` } }
+      )
       console.log(productId, userId)
       navigate('/')
     } catch (err: any) {
@@ -32,7 +33,7 @@ function ShowProduct({ user, setUser }: ShowProductProps) {
   }
 
   React.useEffect(() => {
-    console.log("Your product is available")
+    console.log('Your product is available')
   }, [])
 
   React.useEffect(() => {
@@ -40,26 +41,25 @@ function ShowProduct({ user, setUser }: ShowProductProps) {
       const resp = await fetch(`${baseUrl}/product/${productId}`)
       const ProductsData = await resp.json()
       updateProducts(ProductsData)
-      console.log(ProductsData);
-      
+      console.log(ProductsData)
     }
     fetchProducts()
   }, [])
 
-  return <section>
-    <div>
+  return (
+    <section>
       <div>
-      {product && <Product
-          key={product._id}
-          {...product}
-        />}
-        
+        <div>{product && <Product key={product._id} {...product} />}</div>
+        <div>
+          {user && (
+            <button className="btn btn-success" onClick={handleAddToCart}>
+              Add to cart
+            </button>
+          )}
+        </div>
       </div>
-      <div>
-        {user && <button className="btn btn-success" onClick={handleAddToCart}>Add to cart</button>}
-      </div>
-    </div>
-  </section>
+    </section>
+  )
 }
 
 export default ShowProduct

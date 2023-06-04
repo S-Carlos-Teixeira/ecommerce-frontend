@@ -1,11 +1,10 @@
 import axios from 'axios'
 import React, { SyntheticEvent, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import Product from '../components/Product'
+import { baseUrl } from '../config'
 import ICart from '../interfaces/cart'
 import { IProduct } from '../interfaces/product'
-import Product from './Product'
-import { baseUrl } from "../config"
-
 
 type TCart = null | Array<ICart>
 
@@ -29,20 +28,23 @@ function Cart() {
   useEffect(() => {
     updateCart()
   }, [])
-  console.log(Carts);
+  console.log(Carts)
 
   if (!Carts) {
-    return <img src="https://www.vinsolutions.com/wp-content/uploads/sites/2/vinsolutions/media/Vin-Images/news-blog/Empty_Shopping_Cart_blog.jpg"/>
+    return (
+      <img src="https://www.vinsolutions.com/wp-content/uploads/sites/2/vinsolutions/media/Vin-Images/news-blog/Empty_Shopping_Cart_blog.jpg" />
+    )
   }
-  
-  async function handleRemoveFromCart(productId: String) {
 
+  async function handleRemoveFromCart(productId: String) {
     try {
       const token = localStorage.getItem('token')
-      const { data } = await axios.delete(`${baseUrl}/product/${productId}/cart`,
+      const { data } = await axios.delete(
+        `${baseUrl}/product/${productId}/cart`,
         {
           headers: { Authorization: `Bearer ${token}` }
-        })
+        }
+      )
       updateCart()
     } catch (err: any) {
       setErrorMessage(err.response.data.message)
@@ -50,17 +52,19 @@ function Cart() {
   }
 
   async function handleAddOrder(cartId: String) {
-
     try {
       const token = localStorage.getItem('token')
       const body = { amount: String(reducedArr) }
-      console.log(body);
+      console.log(body)
 
-      const { data } = await axios.post(`${baseUrl}/cart/${cartId}/order`, body,
+      const { data } = await axios.post(
+        `${baseUrl}/cart/${cartId}/order`,
+        body,
         {
           headers: { Authorization: `Bearer ${token}` }
-        })
-      console.log(data);
+        }
+      )
+      console.log(data)
       navigate('/order')
     } catch (err: any) {
       setErrorMessage(err.response.data.message)
@@ -81,13 +85,11 @@ function Cart() {
           {Carts[0].products?.map(product => {
             console.log(product)
             sumArr.push(product.quantity * Number(product.product.price))
-            console.log(sumArr);
+            console.log(sumArr)
             reducedArr = sumArr.reduce((acc, current) => {
               return acc + current
             })
             console.log(reducedArr)
-
-            
 
             return (
               <div className="" key={product._id}>
@@ -98,7 +100,10 @@ function Cart() {
                 </div>
 
                 <div className="">
-                  <div> <img src={product.product.image} /></div>
+                  <div>
+                    {' '}
+                    <img src={product.product.image} />
+                  </div>
                 </div>
 
                 <div className="">
@@ -109,10 +114,19 @@ function Cart() {
                   <p>Quantity: {product.quantity}</p>
                 </div>
                 <div className="">
-                  <p>Total: {product.quantity * Number(product.product.price)}</p>
+                  <p>
+                    Total: {product.quantity * Number(product.product.price)}
+                  </p>
                 </div>
                 <div>
-                  {<button className="" onClick={() => handleRemoveFromCart(product.product._id)}>Remove from cart</button>}
+                  {
+                    <button
+                      className=""
+                      onClick={() => handleRemoveFromCart(product.product._id)}
+                    >
+                      Remove from cart
+                    </button>
+                  }
                 </div>
               </div>
             )
@@ -121,7 +135,11 @@ function Cart() {
         {<p>Total: {reducedArr}</p>}
       </div>
       <div>
-        {<button className="" onClick={() => handleAddOrder(Carts[0]._id)} >Order</button>}
+        {
+          <button className="" onClick={() => handleAddOrder(Carts[0]._id)}>
+            Order
+          </button>
+        }
       </div>
     </section>
   )
