@@ -22,9 +22,9 @@ function Home() {
   }, [])
 
   return (
-    <section className="">
-      <div className="">
-        <div className=""></div>
+    <section >
+      <div >
+        <div ></div>
       </div>
 
       <div className="bg-warning p-4 ">

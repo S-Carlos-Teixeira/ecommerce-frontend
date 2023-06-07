@@ -26,28 +26,28 @@ export default function Order() {
   console.log(orders);
 
   if (!orders) {
-    return <div className=""><h2>No orders placed</h2></div>
+    return <div ><h2>No orders placed</h2></div>
   }
 
   return (
-    <div className="" >
-      <div className="">
-        <h2 className="">Your order</h2>
-        <h2 className="">Order summary:</h2>
-        <div className="">
+    <div  >
+      <div >
+        <h2 >Your order</h2>
+        <h2 >Order summary:</h2>
+        <div >
           {orders[0].cart.products.map(product => {
             console.log(product)
             return (
-              <div className="" key={product._id}>
+              <div  key={product._id}>
                 <h2>{product.product.name}</h2>
               </div>
             )
           })
           }
-          <div className="">
+          <div >
             <h2>Status: {orders[0].status}</h2>
           </div>
-          <div className="">
+          <div >
             <h2>Total: {orders[0].amount}</h2>
           </div>
         </div>

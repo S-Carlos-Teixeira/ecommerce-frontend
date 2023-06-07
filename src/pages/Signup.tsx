@@ -1,11 +1,23 @@
-import React, { SyntheticEvent, useState } from 'react'
+import React, { SyntheticEvent, useState, useReducer } from 'react'
 import axios from 'axios'
 import { Link, useNavigate } from 'react-router-dom'
 import { baseUrl } from "../config"
 
+function reducer(){
+  return {}
+}
+
 export default function Signup() {
 
   const navigate = useNavigate()
+  
+  const [state, dispatch]= useReducer(reducer, {
+    username: "",
+    email: "",
+    mobile: "",
+    password: "",
+    passwordConfirmation: "",
+  })
 
   const [formData, setFormData] = useState({
     username: "",
@@ -43,82 +55,82 @@ export default function Signup() {
     setErrorData(newErrorData)
   }
 
-  return <div className="">
-  <div className="">
+  return <div >
+  <div >
     <form onSubmit={handleSubmit}>
-      <div className="">
-        <label className="">Username</label>
-        <div className="">
+      <div >
+        <label >Username</label>
+        <div >
           <input
-            className=""
+            
             type="text"
             name={'username'}
             onChange={handleChange}
             value={formData.username}
           />
-          {errorData.username && <small className="">{errorData.username}</small>}
+          {errorData.username && <small >{errorData.username}</small>}
         </div>
       </div>
 
-      <div className="">
-        <label className="">Email</label>
-        <div className="">
+      <div >
+        <label >Email</label>
+        <div >
           <input
-            className=""
+            
             type="text"
             name={'email'}
             onChange={handleChange}
             value={formData.email}
           />
-          {errorData.email && <small className="">{errorData.email}</small>}
+          {errorData.email && <small >{errorData.email}</small>}
         </div>
       </div>
 
-      <div className="">
-        <label className="">Mobile Number</label>
-        <div className="">
+      <div >
+        <label >Mobile Number</label>
+        <div >
           <input
-            className=""
+            
             type="text"
             name={'mobile'}
             onChange={handleChange}
             value={formData.mobile}
           />
-          {errorData.mobile && <small className="">{errorData.mobile}</small>}     
+          {errorData.mobile && <small >{errorData.mobile}</small>}     
         </div>
       </div>
 
-      <div className="">
-        <label className="">Password</label>
-        <div className="">
+      <div >
+        <label >Password</label>
+        <div >
           <input
-            className=""
+            
             type="password"
             name={'password'}
             onChange={handleChange}
             value={formData.password}
           />
-          {errorData.password && <small className="">{errorData.password}</small>}
+          {errorData.password && <small >{errorData.password}</small>}
         </div>
       </div>
 
-      <div className="">
-        <label className="">Re-enter Password</label>
-        <div className="">
+      <div >
+        <label >Re-enter Password</label>
+        <div >
           <input
-            className=""
+            
             type="password"
             name={'passwordConfirmation'}
             onChange={handleChange}
             value={formData.passwordConfirmation}
           />
-          {errorData.passwordConfirmation && <small className="">{errorData.passwordConfirmation}</small>}
+          {errorData.passwordConfirmation && <small >{errorData.passwordConfirmation}</small>}
         </div>
       </div>
-      <button className="">Register</button>
+      <button >Register</button>
     </form>
   </div>
-  <div className="">
+  <div >
     <p>Already registered? <Link to={'/login'}>Login</Link></p>
   </div>
 </div>

@@ -45,79 +45,79 @@ export default function SellerSignup() {
     setErrorData(newErrorData)
   }
 
-  return <div className="">
-  <div className="">
+  return <div >
+  <div >
     <form onSubmit={handleSubmit}>
-      <div className="">
-        <label className="">Username</label>
-        <div className="">
+      <div >
+        <label >Username</label>
+        <div >
           <input
-            className=""
+            
             type="text"
             name={'username'}
             onChange={handleChange}
             value={formData.username}
           />
-          {errorData.username && <small className="">{errorData.username}</small>}
+          {errorData.username && <small >{errorData.username}</small>}
         </div>
       </div>
 
-      <div className="">
-        <label className="">Email</label>
-        <div className="">
+      <div >
+        <label >Email</label>
+        <div >
           <input
-            className=""
+            
             type="text"
             name={'email'}
             onChange={handleChange}
             value={formData.email}
           />
-          {errorData.email && <small className="">{errorData.email}</small>}
+          {errorData.email && <small >{errorData.email}</small>}
         </div>
       </div>
 
-      <div className="">
-        <label className="">Mobile Number</label>
-        <div className="">
+      <div >
+        <label >Mobile Number</label>
+        <div >
           <input
-            className=""
+            
             type="text"
             name={'mobile'}
             onChange={handleChange}
             value={formData.mobile}
           />
-          {errorData.mobile && <small className="">{errorData.mobile}</small>}     
+          {errorData.mobile && <small >{errorData.mobile}</small>}     
         </div>
       </div>
 
-      <div className="">
-        <label className="">Password</label>
-        <div className="">
+      <div >
+        <label >Password</label>
+        <div >
           <input
-            className=""
+            
             type="password"
             name={'password'}
             onChange={handleChange}
             value={formData.password}
           />
-          {errorData.password && <small className="">{errorData.password}</small>}
+          {errorData.password && <small >{errorData.password}</small>}
         </div>
       </div>
 
-      <div className="">
-        <label className="">Re-enter Password</label>
-        <div className="">
+      <div >
+        <label >Re-enter Password</label>
+        <div >
           <input
-            className=""
+            
             type="password"
             name={'passwordConfirmation'}
             onChange={handleChange}
             value={formData.passwordConfirmation}
           />
-          {errorData.passwordConfirmation && <small className="">{errorData.passwordConfirmation}</small>}
+          {errorData.passwordConfirmation && <small >{errorData.passwordConfirmation}</small>}
         </div>
       </div>
-      <button className="">Register</button>
+      <button >Register</button>
     </form>
   </div>
 </div>

@@ -6,7 +6,7 @@ import { NavLink } from 'react-router-dom'
 
 interface NavbarProps {
   user: IUser | null
-  setUser: ({})=> void
+  setUser: Function
 }
 
 function Navbar({ user, setUser }: NavbarProps) {
@@ -19,11 +19,11 @@ function Navbar({ user, setUser }: NavbarProps) {
   }
   return (
     <>
-      <header className="bg-info ">
-        <NavbarBs className="shadow-sm">
+      <header >
+        <NavbarBs>
           <Container>
             <Nav>
-              <Nav.Link as={NavLink} to="/" className="navbar-brand">
+              <Nav.Link as={NavLink} to="/">
                 <img
                   className="img-fluid"
                   src={logo}

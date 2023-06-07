@@ -56,14 +56,13 @@ export default function AddProduct() {
   }
 
   return (
-    <section className="">
-      <div className="">
+    <section>
+      <div>
         <form onSubmit={handleSubmit}>
-          <div className="">
-            <label className="">Product Name</label>
-            <div className="">
+          <div>
+            <label>Product Name</label>
+            <div>
               <input
-                className=""
                 type="text"
                 name={'name'}
                 onChange={handleChange}
@@ -73,11 +72,10 @@ export default function AddProduct() {
             </div>
           </div>
 
-          <div className="">
-            <label className="">Product Description</label>
-            <div className="">
+          <div>
+            <label>Product Description</label>
+            <div>
               <textarea
-                className=""
                 placeholder="Enter Description"
                 name={'description'}
                 onChange={handleChange}
@@ -87,11 +85,10 @@ export default function AddProduct() {
             </div>
           </div>
 
-          <div className="">
-            <label className="">Product Price</label>
-            <div className="">
+          <div>
+            <label>Product Price</label>
+            <div>
               <input
-                className=""
                 type="text"
                 name={'price'}
                 onChange={handleChange}
@@ -101,12 +98,10 @@ export default function AddProduct() {
             </div>
           </div>
 
-          <div className="">
-            <label className="">Product Category</label>
-            <div className="">
-              <div
-                className=""
-              >
+          <div>
+            <label>Product Category</label>
+            <div>
+              <div>
                 <select
                   defaultValue="Options"
                   name={'categories'}
@@ -125,11 +120,10 @@ export default function AddProduct() {
             </div>
           </div>
 
-          <div className="">
-            <label className="">Product Image</label>
-            <div className="">
+          <div>
+            <label>Product Image</label>
+            <div>
               <input
-                className=""
                 type="text"
                 name={'image'}
                 onChange={handleChange}
@@ -139,11 +133,10 @@ export default function AddProduct() {
             </div>
           </div>
 
-          <div className="">
-            <label className="">Product Quantity</label>
-            <div className="">
+          <div>
+            <label>Product Quantity</label>
+            <div>
               <input
-                className=""
                 type="text"
                 name={'quantity'}
                 onChange={handleChange}
@@ -154,13 +147,11 @@ export default function AddProduct() {
           </div>
 
           <div className="">
-            <div className="">
-              <label className="">I agree to the <a href="#">terms and conditions</a> </label>
-              <input type="checkbox" />
-            </div>
+            <label className="">I agree to the <a href="#">terms and conditions</a> </label>
+            <input type="checkbox" />
           </div>
 
-          <button className="">Add Product</button>
+          <button>Add Product</button>
         </form>
       </div>
     </section>
